@@ -1,0 +1,43 @@
+.single-stripe {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 57px);
+    width: calc(100% / 5);
+
+    .fas {
+        visibility: hidden;
+        position: relative;
+        color: rgb(255, 255, 255);
+        opacity: 0.5;
+        font-size: xx-large;
+        margin: 2rem 0;
+        cursor: pointer;
+    }
+
+    .fas:hover {
+        opacity: 1;
+    }
+
+    .fa-arrows-alt-h {
+        cursor: grab;
+    }
+
+    p {
+        font-size: xx-large;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+        opacity: 0.74;
+    }
+
+    p:hover {
+        opacity: 1;
+    }
+}
+
+.single-stripe:hover {
+    .fas {
+        visibility: visible;
+    }
+}

@@ -1,26 +1,96 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
+import NavBarComp from "./Comp/NavBar/Header";
+import MainComp from "./Comp/Main/Container";
+// import CreatePanelComp from "./Comp/CreatePanel";
+// import ColorPanelComp from "./Comp/ColorPanel";
+// import SideBarComp from "./Comp/SideBar";
 
-function App() {
+const FancyColoursApp = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBarComp />
+      <MainComp />
+    </>
   );
-}
+};
+export default FancyColoursApp;
 
-export default App;
+// const ColorPaletteApp = props => {
+//   //Function to generate random alphanumeric string, length 6
+//   const generateRandomString = () => {
+//     let output = "",
+//       i = 6;
+//     while (i) {
+//       let arr = [
+//         String.fromCharCode(Math.floor(Math.random() * 9 + 48)),
+//         String.fromCharCode(Math.floor(Math.random() * 25 + 97)),
+//         String.fromCharCode(Math.floor(Math.random() * 25 + 65))
+//       ];
+//       output += arr[Math.floor(Math.random() * 3)];
+//       i--;
+//     }
+//     return output;
+//   };
+//   //State of user
+//   const [loggedIn, setLoggedIn] = useState(false);
+
+//   //State of the current panels
+//   const [colorPanelCollection, setColorPanelCollection] = useState([
+//     { ID: generateRandomString() },
+//     { ID: generateRandomString() },
+//     { ID: generateRandomString() },
+//     { ID: generateRandomString() },
+//     { ID: generateRandomString() }
+//   ]);
+
+//   useEffect(() => {
+//     // Update the document title using the browser API
+//     document.title = `${colorPanelCollection.length} panels`;
+//   }, [colorPanelCollection]);
+
+//   const addColorPanelHandler = () => {
+//     setColorPanelCollection([
+//       ...colorPanelCollection,
+//       { ID: generateRandomString() }
+//     ]);
+//   };
+
+//   const removeColorPanelHandler = ID => {
+//     setColorPanelCollection(
+//       colorPanelCollection.filter(itemObj => itemObj.ID !== ID)
+//     );
+//   };
+
+//   return (
+//     <Router>
+//       <div className="App">
+//         <NavBarComp loggedIn={loggedIn} />
+//         <div className="container">
+//           <div id="feed">
+//             <Route path="/new" component={CreatePanelComp} />
+//             <Route path="/palettes">
+//               {colorPanelCollection.map((panel, index) => {
+//                 return (
+//                   <ColorPanelComp
+//                     key={panel.ID}
+//                     uniqueID={panel.ID}
+//                     scheme={panel}
+//                     remove={removeColorPanelHandler}
+//                   />
+//                 );
+//               })}
+//             </Route>
+//           </div>
+//           <SideBarComp />
+//         </div>
+//         {/* <button className="feeling-lucky" onClick={addColorPanelHandler}>
+//         Feeling Lucky
+//       </button> */}
+//       </div>
+//     </Router>
+//   );
+// };
+
+// export default ColorPaletteApp;
