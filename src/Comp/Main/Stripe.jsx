@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
-const Stripe = ({ backgroundColour, locked }) => {
-  const [isLocked, setIsLocked] = useState(false);
-
-  const handleLockClick = () => {
-    setIsLocked(isLocked ? false : true);
-  };
-
+const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
   return (
     <div
       className="single-stripe"
@@ -29,13 +23,16 @@ const Stripe = ({ backgroundColour, locked }) => {
         <Tooltip title="Unlock" arrow>
           <i
             className="fas fa-lock"
-            onClick={handleLockClick}
+            onClick={() => handleLockClick(index)}
             style={{ visibility: "visible", opacity: 1 }}
           />
         </Tooltip>
       ) : (
         <Tooltip title="Lock" arrow>
-          <i className="fas fa-lock-open" onClick={handleLockClick} />
+          <i
+            className="fas fa-lock-open"
+            onClick={() => handleLockClick(index)}
+          />
         </Tooltip>
       )}
 
