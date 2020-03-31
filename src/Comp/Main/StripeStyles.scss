@@ -24,15 +24,24 @@
         cursor: grab;
     }
 
-    p {
+    input {
+        width: 100%;
+        border: none;
+        background-color: transparent;
         font-size: xx-large;
         font-weight: 700;
         color: rgb(255, 255, 255);
         opacity: 0.74;
+        padding: 1px;
+        text-align: center;
     }
 
-    p:hover {
+    input:hover {
         opacity: 1;
+    }
+
+    input:focus {
+        outline: 0;
     }
 }
 

@@ -37,7 +37,7 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
       )}
 
       <Tooltip title="Edit" arrow>
-        <p>{backgroundColour}</p>
+        <input type="text" defaultValue={backgroundColour} />
       </Tooltip>
     </div>
   );
