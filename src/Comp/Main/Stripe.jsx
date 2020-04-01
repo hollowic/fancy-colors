@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
+  const [colour, setColour] = useState(backgroundColour);
+  const handleOnFocus = e => {
+    e.target.focus();
+    textInput.current.setSelectionRange(1, 7);
+  };
+
+  const textInput = useRef(null);
+
   return (
     <div
       className="single-stripe"
@@ -37,7 +45,16 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
       )}
 
       <Tooltip title="Edit" arrow>
-        <input type="text" defaultValue={backgroundColour} />
+        <input
+          ref={textInput}
+          type="text"
+          value={colour}
+          onFocus={handleOnFocus}
+          onChange={e => {
+            console.log(e.target.value.charCodeAt(1));
+            setColour(e.target.value.toUpperCase());
+          }}
+        />
       </Tooltip>
     </div>
   );
