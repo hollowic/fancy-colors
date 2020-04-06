@@ -48,12 +48,10 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
         <input
           ref={textInput}
           type="text"
+          maxLength="7"
           value={colour}
           onFocus={handleOnFocus}
-          onChange={e => {
-            console.log(e.target.value.charCodeAt(1));
-            setColour(e.target.value.toUpperCase());
-          }}
+          onChange={e => setColour(e.target.value)}
         />
       </Tooltip>
     </div>
