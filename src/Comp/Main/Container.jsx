@@ -39,9 +39,17 @@ const Container = props => {
     );
   };
 
-  // const handleColourChange = index => {
-  //   setColours(colours.map(el, i));
-  // };
+  const handleColourChange = (index, hexValue) => {
+    setColours(
+      colours.map((el, i) => {
+        if (i === index) {
+          return { colour: hexValue, isLocked: false };
+        } else {
+          return el;
+        }
+      })
+    );
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", handleSpacebarPress);
@@ -56,6 +64,7 @@ const Container = props => {
             index={i}
             backgroundColour={el.colour}
             handleLockClick={handleLockClick}
+            handleColourChange={handleColourChange}
             isLocked={el.isLocked}
           />
         );

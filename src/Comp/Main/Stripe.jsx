@@ -2,7 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
-const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
+const Stripe = ({
+  backgroundColour,
+  isLocked,
+  handleLockClick,
+  handleColourChange,
+  index
+}) => {
   const [colour, setColour] = useState(backgroundColour);
 
   useEffect(() => {
@@ -27,6 +33,8 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
   const revertColour = currentValue => {
     if (!validateHexValue(currentValue)) {
       setColour(backgroundColour);
+    } else {
+      handleColourChange(index, currentValue);
     }
   };
 
