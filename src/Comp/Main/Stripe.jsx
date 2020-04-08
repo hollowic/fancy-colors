@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
+import { validateHexValue } from "../../Helpers/helperFn";
 const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
   const [colour, setColour] = useState(backgroundColour);
   const handleOnFocus = e => {
@@ -9,6 +10,17 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
   };
 
   const textInput = useRef(null);
+
+  const inputFilter = e => {
+    const regex = /[#0-9A-F]/i;
+    if (regex.test(e.target.value[e.target.value.length - 1])) {
+      setColour(e.target.value.toUpperCase());
+    }
+  };
+
+  // const revertColour = () => {
+  //   textInput.current.value = colour;
+  // };
 
   return (
     <div
@@ -51,7 +63,13 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
           maxLength="7"
           value={colour}
           onFocus={handleOnFocus}
-          onChange={e => setColour(e.target.value)}
+          onChange={e => inputFilter(e)}
+          onBlur={e => console.log(validateHexValue(e.target.value))}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              console.log(validateHexValue(e.target.value));
+            }
+          }}
         />
       </Tooltip>
     </div>
