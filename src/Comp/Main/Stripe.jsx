@@ -29,11 +29,22 @@ const Stripe = ({
     }
   };
 
-  //this needs to be remade and renamed into a submit action WIP
-  const revertColour = currentValue => {
+  const submitColour = currentValue => {
     if (!validateHexValue(currentValue)) {
       setColour(backgroundColour);
     } else {
+      if (currentValue[0] !== "#" && currentValue.length === 3) {
+        currentValue = currentValue
+          .split("")
+          .map(hex => {
+            return hex + hex;
+          })
+          .join("");
+        currentValue = "#" + currentValue;
+      }
+      if (currentValue.length === 6) {
+        currentValue = "#" + currentValue;
+      }
       handleColourChange(index, currentValue);
     }
   };
@@ -80,10 +91,10 @@ const Stripe = ({
           value={colour}
           onFocus={handleOnFocus}
           onChange={e => inputFilter(e)}
-          onBlur={e => revertColour(e.target.value)}
+          onBlur={e => submitColour(e.target.value)}
           onKeyPress={e => {
             if (e.key === "Enter") {
-              revertColour(e.target.value);
+              submitColour(e.target.value);
               textInput.current.blur();
             }
           }}
