@@ -13,7 +13,7 @@ const Container = props => {
   ]);
 
   const handleSpacebarPress = e => {
-    if (e.keyCode === 32) {
+    if (e.key === " ") {
       setColours(prevState => {
         return prevState.map(el => {
           if (el.isLocked) {
@@ -38,6 +38,10 @@ const Container = props => {
       })
     );
   };
+
+  // const handleColourChange = index => {
+  //   setColours(colours.map(el, i));
+  // };
 
   useEffect(() => {
     window.addEventListener("keydown", handleSpacebarPress);

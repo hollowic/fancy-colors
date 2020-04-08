@@ -1,9 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
 const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
   const [colour, setColour] = useState(backgroundColour);
+
+  useEffect(() => {
+    setColour(backgroundColour);
+  }, [backgroundColour]);
+
   const handleOnFocus = e => {
     e.target.focus();
     textInput.current.setSelectionRange(1, 7);
@@ -18,9 +23,12 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
     }
   };
 
-  // const revertColour = () => {
-  //   textInput.current.value = colour;
-  // };
+  //this needs to be remade and renamed into a submit action WIP
+  const revertColour = currentValue => {
+    if (!validateHexValue(currentValue)) {
+      setColour(backgroundColour);
+    }
+  };
 
   return (
     <div
@@ -64,10 +72,11 @@ const Stripe = ({ backgroundColour, isLocked, handleLockClick, index }) => {
           value={colour}
           onFocus={handleOnFocus}
           onChange={e => inputFilter(e)}
-          onBlur={e => console.log(validateHexValue(e.target.value))}
+          onBlur={e => revertColour(e.target.value)}
           onKeyPress={e => {
             if (e.key === "Enter") {
-              console.log(validateHexValue(e.target.value));
+              revertColour(e.target.value);
+              textInput.current.blur();
             }
           }}
         />
