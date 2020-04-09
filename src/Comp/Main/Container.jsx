@@ -3,19 +3,19 @@ import "./ContainerStyles.scss";
 import StripeComp from "./Stripe";
 import { generateRandomHexValue } from "../../Helpers/helperFn";
 
-const Container = props => {
+const Container = (props) => {
   const [colours, setColours] = useState([
     { colour: generateRandomHexValue(), isLocked: false },
     { colour: generateRandomHexValue(), isLocked: false },
     { colour: generateRandomHexValue(), isLocked: false },
     { colour: generateRandomHexValue(), isLocked: false },
-    { colour: generateRandomHexValue(), isLocked: false }
+    { colour: generateRandomHexValue(), isLocked: false },
   ]);
 
-  const handleSpacebarPress = e => {
+  const handleSpacebarPress = (e) => {
     if (e.key === " ") {
-      setColours(prevState => {
-        return prevState.map(el => {
+      setColours((prevState) => {
+        return prevState.map((el) => {
           if (el.isLocked) {
             return el;
           } else {
@@ -26,7 +26,7 @@ const Container = props => {
     }
   };
 
-  const handleLockClick = index => {
+  const handleLockClick = (index) => {
     setColours(
       colours.map((el, i) => {
         if (i === index) {

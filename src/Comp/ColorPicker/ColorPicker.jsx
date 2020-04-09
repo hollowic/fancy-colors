@@ -4,14 +4,6 @@ import "./ColorPickerStyles.scss";
 const ColorPicker = (props) => {
   return (
     <>
-      <div className="tabs-header">
-        <ul>
-          <li>HSV</li>
-          <li>RGB</li>
-          <li>CMYK</li>
-          <li>PICK</li>
-        </ul>
-      </div>
       <div className="tabs">
         <div className="adjust-hsv"></div>
         <div className="adjust-rgb"></div>
@@ -43,3 +35,4 @@ const ColorPicker = (props) => {
     </>
   );
 };
+export default ColorPicker;

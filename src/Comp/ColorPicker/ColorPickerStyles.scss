@@ -1,8 +1,3 @@
-.tabs-header {
-  width: 290px;
-  height: 45px;
-}
-
 .tabs {
   width: 290px;
   height: 250px;
@@ -11,4 +6,43 @@
 .adjust-pick-picker {
   width: 250px;
   height: 150px;
+  margin-bottom: 12px;
+  position: relative;
+  border-radius: 5px;
+
+  .adjust-pick-s {
+    background: -webkit-linear-gradient(right, rgba(255, 255, 255, 0), #fff);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  .adjust-pick-v {
+    background: -webkit-linear-gradient(top, transparent, #000);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset rgba(0, 0, 0, .05) 0 0 0 1px;
+    border-radius: 4px;
+  }
+
+}
+
+.adjust-pick-handle {
+  cursor: -webkit-grab;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.adjust-pick-h {
+  margin-top: 15px;
+}
+
+.range {
+  width: 100%;
+  border-radius: 7px;
+  height: 14px;
+  -webkit-appearance: none;
 }
