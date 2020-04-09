@@ -1,4 +1,7 @@
 import React from "react";
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
+import "./ColorRangeGroup.styles.scss";
 
 export default function ColorRangeGroup() {
   return (
@@ -6,16 +9,27 @@ export default function ColorRangeGroup() {
       <label>Hue</label>
       <div className="input-number">
         <input
-          type="text"
+          type="number"
           className="number"
           data-min="0"
           data-max="360"
+          min="0"
+          max="360"
           tabIndex="1"
+          style={{
+            width: 40,
+            textAlign: "center",
+            fontSize: 12,
+            height: 23,
+            borderRadius: "7px 0px 0px 7px",
+            border: "1px solid #d3dce6",
+          }}
         />
-        <i className="fas fa-minus"></i>
-        <i className="fas fa-plus"></i>
+        <RemoveIcon
+          style={{ border: "1px solid #d3dce6", cursor: "pointer" }}
+        />
+        <AddIcon style={{ border: "1px solid #d3dce6", cursor: "pointer" }} />
       </div>
-
       <input
         type="range"
         className="range"
