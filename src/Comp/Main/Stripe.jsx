@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
+
 const Stripe = ({
   backgroundColour,
   isLocked,
@@ -85,6 +86,7 @@ const Stripe = ({
 
       <Tooltip title="Edit" arrow>
         <input
+          disabled={isLocked}
           ref={textInput}
           type="text"
           maxLength="7"
