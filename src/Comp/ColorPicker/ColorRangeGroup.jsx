@@ -7,7 +7,7 @@ const initWait = 0.5;
 const changeRate = 20;
 
 export default function ColorRangeGroup({ label, limit }) {
-  const [currentValue, setCurrentValue] = useState(90);
+  const [currentValue, setCurrentValue] = useState(100);
   const timeoutID = useRef(false);
   const intervalID = useRef(false);
 
@@ -49,6 +49,37 @@ export default function ColorRangeGroup({ label, limit }) {
     clearInterval(intervalID.current);
   };
 
+  const handleOnChange = (e) => {
+    const regex = /[0-9]/;
+
+    if (
+      e.nativeEvent.inputType === "deleteContentBackward" &&
+      currentValue.length === 1
+    ) {
+      setCurrentValue(0);
+      return;
+    }
+
+    if (
+      e.nativeEvent.inputType === "deleteContentBackward" &&
+      currentValue.length !== 1
+    ) {
+      setCurrentValue((prevState) => {
+        return Math.floor(prevState / 10);
+      });
+    }
+
+    if (regex.test(e.nativeEvent.data)) {
+      if (currentValue === 0) {
+        setCurrentValue(Number(e.nativeEvent.data));
+        return;
+      }
+      if (Number(e.target.value) <= limit) {
+        setCurrentValue(e.target.value);
+      }
+    }
+  };
+
   return (
     <div className="adjust-h range-group">
       <div className="top-portion">
@@ -60,7 +91,8 @@ export default function ColorRangeGroup({ label, limit }) {
             className="number"
             data-min="0"
             data-max={limit}
-            tabIndex="1"
+            maxLength={3}
+            onChange={handleOnChange}
           />
           <RemoveIcon
             className="minus"
@@ -90,6 +122,7 @@ export default function ColorRangeGroup({ label, limit }) {
         min="0"
         max={limit}
         value={currentValue}
+        onChange={(e) => console.log(e)}
         style={{
           background:
             "-webkit-linear-gradient(left, rgb(175, 33, 33), rgb(175, 175, 33), rgb(33, 175, 33), rgb(33, 175, 175), rgb(33, 33, 175), rgb(175, 33, 175), rgb(175, 33, 33))",
