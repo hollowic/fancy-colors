@@ -6,12 +6,16 @@ import MainComp from "./Comp/Main/Container";
 // import CreatePanelComp from "./Comp/CreatePanel";
 // import ColorPanelComp from "./Comp/ColorPanel";
 // import SideBarComp from "./Comp/SideBar";
-
-const FancyColoursApp = props => {
+import ColorPicker from "./Comp/ColorPicker/ColorPicker";
+import ColorRangeGroup from "./Comp/ColorPicker/ColorRangeGroup";
+import TabsHeader from "./Comp/ColorPicker/TabsHeader";
+const FancyColoursApp = (props) => {
   return (
     <>
-      <NavBarComp />
-      <MainComp />
+      {/* <NavBarComp />
+      <MainComp /> */}
+      <TabsHeader />
+      <ColorRangeGroup />
     </>
   );
 };

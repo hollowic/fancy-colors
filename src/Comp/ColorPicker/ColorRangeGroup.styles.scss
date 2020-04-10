@@ -1,5 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
+.range-group {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 53px;
 
-* {
-    font-family: 'Sen', sans-serif;
+    .top-portion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        label {
+            font-size: 13px;
+        }
+
+        .input-number {
+            width: 80px;
+            display: flex;
+
+            input {
+                border-right: none !important;
+                width: 40px;
+                text-align: center;
+                font-size: 12px;
+                height: 23px;
+                padding: 0;
+                border-radius: 7px 0 0 7px;
+                border: 1px solid #d3dce6
+            }
+
+            input:focus {
+                outline: none !important;
+                border: 1px solid rgb(35, 173, 240) !important;
+            }
+
+            .minus {
+                border: 1px solid #d3dce6;
+                border-right: none;
+                cursor: pointer;
+                width: 20px;
+                height: 23px
+            }
+
+            .plus {
+                border-radius: 0 7px 7px 0;
+                border: 1px solid #d3dce6;
+                cursor: pointer;
+                width: 20px;
+                height: 23px
+            }
+        }
+    }
+
+    .range {
+        margin: auto;
+    }
+
+    .range:focus {
+        outline: none;
+    }
+
 }
