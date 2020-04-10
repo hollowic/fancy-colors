@@ -31,8 +31,7 @@ const Stripe = ({
     }
 
     if (regex.test(e.nativeEvent.data)) {
-      console.log(e.target.value);
-      setColour(e.target.value.toUpperCase());
+      setColour(e.target.value);
     }
   };
 
