@@ -18,6 +18,9 @@ export default function ColorRangeGroup() {
     }
   };
 
+  const initWait = 0.5;
+  const changeRate = 20;
+
   return (
     <div className="adjust-h range-group">
       <div className="top-portion">

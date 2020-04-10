@@ -28,17 +28,25 @@
                 border: 1px solid #d3dce6
             }
 
+            input:hover {
+                border-color: #b2c2d4;
+            }
+
             input:focus {
                 outline: none !important;
-                border: 1px solid rgb(35, 173, 240) !important;
+                border: 1px solid rgb(35, 173, 240);
             }
 
             .minus {
                 border: 1px solid #d3dce6;
-                border-right: none;
+                border-right: none !important;
                 cursor: pointer;
                 width: 20px;
                 height: 23px
+            }
+
+            .minus:hover {
+                border: 1px double #b9c7d7;
             }
 
             .plus {
@@ -48,6 +56,22 @@
                 width: 20px;
                 height: 23px
             }
+
+            .plus:hover {
+                border: 1px double #b9c7d7;
+            }
+        }
+
+        .input-number input:focus+.minus {
+            border-left: 1px double rgb(35, 173, 240);
+        }
+
+        .input-number input:hover+.minus {
+            border-left: 1px double #b9c7d7;
+        }
+
+        .input-number .minus:hover+.plus {
+            border-left: 1px double #b9c7d7;
         }
     }
 
