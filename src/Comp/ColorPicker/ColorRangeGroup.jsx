@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import "./ColorRangeGroup.styles.scss";
 
 export default function ColorRangeGroup() {
-  const [hue, setHue] = useState(5);
+  const [hue, setHue] = useState(300);
+  const timeoutID = useRef(false);
+  const intervalID = useRef(false);
 
   const handlePlusClick = () => {
     if (hue < 360) {
@@ -18,26 +20,25 @@ export default function ColorRangeGroup() {
     }
   };
 
-  let timeoutID, intervalID;
   const initWait = 0.5;
   const changeRate = 20;
 
-  const waitIsOver = () => {
-    intervalID = setInterval(handlePlusClick, 1000 / changeRate);
-    console.log(intervalID);
+  const waitIsOver = (input) => {
+    if (input) {
+      intervalID.current = setInterval(handlePlusClick, 1000 / changeRate);
+    } else {
+      intervalID.current = setInterval(handleMinusClick, 1000 / changeRate);
+    }
   };
 
-  const callBackOnceAndWait = () => {
-    handlePlusClick();
-    console.log("in here");
-    timeoutID = setTimeout(waitIsOver, initWait * 1000);
-    console.log(timeoutID);
+  const callBackOnceAndWait = (input) => {
+    input ? handlePlusClick() : handleMinusClick();
+    timeoutID.current = setTimeout(waitIsOver(input), initWait * 1000);
   };
 
   const stopTimers = () => {
-    console.log("out here", timeoutID, intervalID);
-    clearTimeout(timeoutID);
-    clearInterval(intervalID);
+    clearTimeout(timeoutID.current);
+    clearInterval(intervalID.current);
   };
 
   return (
@@ -53,13 +54,22 @@ export default function ColorRangeGroup() {
             data-max="360"
             tabIndex="1"
           />
-          <RemoveIcon className="minus" />
-          <AddIcon
-            className="plus"
-            onTouchStart={callBackOnceAndWait}
+          <RemoveIcon
+            className="minus"
+            onTouchStart={() => callBackOnceAndWait(false)}
             onTouchEnd={stopTimers}
             onTouchMove={stopTimers}
-            onMouseDown={callBackOnceAndWait}
+            onMouseDown={() => callBackOnceAndWait(false)}
+            onMouseUp={stopTimers}
+            onMouseLeave={stopTimers}
+            onClick={stopTimers}
+          />
+          <AddIcon
+            className="plus"
+            onTouchStart={() => callBackOnceAndWait(true)}
+            onTouchEnd={stopTimers}
+            onTouchMove={stopTimers}
+            onMouseDown={() => callBackOnceAndWait(true)}
             onMouseUp={stopTimers}
             onMouseLeave={stopTimers}
             onClick={stopTimers}
