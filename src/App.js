@@ -12,16 +12,16 @@ import TabsHeader from "./Comp/ColorPicker/TabsHeader";
 const FancyColoursApp = (props) => {
   return (
     <>
-      {/* <NavBarComp />
-      <MainComp /> */}
-      <TabsHeader />
+      <NavBarComp />
+      <MainComp />
+      {/* <TabsHeader />
       <ColorRangeGroup label="Hue" limit={360} />
       <ColorRangeGroup label="Saturation" limit={100} />
       <ColorRangeGroup label="Value" limit={100} />
 
       <ColorRangeGroup label="Red" limit={255} />
       <ColorRangeGroup label="Green" limit={255} />
-      <ColorRangeGroup label="Blue" limit={255} />
+      <ColorRangeGroup label="Blue" limit={255} /> */}
     </>
   );
 };

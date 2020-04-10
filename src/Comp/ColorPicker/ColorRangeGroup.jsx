@@ -50,6 +50,7 @@ export default function ColorRangeGroup({ label, limit }) {
   };
 
   const handleOnChange = (e) => {
+    //To do: write tests for this, manual testing is not enough
     const regex = /[0-9]/;
 
     if (
@@ -57,7 +58,6 @@ export default function ColorRangeGroup({ label, limit }) {
       currentValue.length === 1
     ) {
       setCurrentValue(0);
-      return;
     }
 
     if (

@@ -8,7 +8,7 @@ const Stripe = ({
   isLocked,
   handleLockClick,
   handleColourChange,
-  index
+  index,
 }) => {
   const [colour, setColour] = useState(backgroundColour);
 
@@ -16,28 +16,33 @@ const Stripe = ({
     setColour(backgroundColour);
   }, [backgroundColour]);
 
-  const handleOnFocus = e => {
+  const handleOnFocus = (e) => {
     e.target.focus();
     textInput.current.setSelectionRange(1, 7);
   };
 
   const textInput = useRef(null);
 
-  const inputFilter = e => {
+  const handleOnChange = (e) => {
     const regex = /[#0-9A-F]/i;
-    if (regex.test(e.target.value[e.target.value.length - 1])) {
+
+    if (e.nativeEvent.inputType === "deleteContentBackward") {
+      setColour(colour.substring(0, colour.length - 1));
+    }
+
+    if (regex.test(e.nativeEvent.data)) {
       setColour(e.target.value.toUpperCase());
     }
   };
 
-  const submitColour = currentValue => {
+  const submitColour = (currentValue) => {
     if (!validateHexValue(currentValue)) {
       setColour(backgroundColour);
     } else {
       if (currentValue[0] !== "#" && currentValue.length === 3) {
         currentValue = currentValue
           .split("")
-          .map(hex => {
+          .map((hex) => {
             return hex + hex;
           })
           .join("");
@@ -92,9 +97,9 @@ const Stripe = ({
           maxLength="7"
           value={colour}
           onFocus={handleOnFocus}
-          onChange={e => inputFilter(e)}
-          onBlur={e => submitColour(e.target.value)}
-          onKeyPress={e => {
+          onChange={handleOnChange}
+          onBlur={(e) => submitColour(e.target.value)}
+          onKeyPress={(e) => {
             if (e.key === "Enter") {
               submitColour(e.target.value);
               textInput.current.blur();
