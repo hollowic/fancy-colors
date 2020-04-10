@@ -27,15 +27,17 @@ const Stripe = ({
     const regex = /[#0-9A-F]/i;
 
     if (e.nativeEvent.inputType === "deleteContentBackward") {
-      setColour(colour.substring(0, colour.length - 1));
+      setColour(e.target.value);
     }
 
     if (regex.test(e.nativeEvent.data)) {
+      console.log(e.target.value);
       setColour(e.target.value.toUpperCase());
     }
   };
 
   const submitColour = (currentValue) => {
+    //To do: write tests for this, manual testing is not enough
     if (!validateHexValue(currentValue)) {
       setColour(backgroundColour);
     } else {
@@ -47,6 +49,15 @@ const Stripe = ({
           })
           .join("");
         currentValue = "#" + currentValue;
+      }
+      if (currentValue[0] === "#" && currentValue.length === 4) {
+        currentValue = currentValue
+          .split("")
+          .map((hex) => {
+            return hex + hex;
+          })
+          .join("");
+        currentValue = currentValue.substring(1, currentValue.length);
       }
       if (currentValue.length === 6) {
         currentValue = "#" + currentValue;
