@@ -14,7 +14,7 @@ export default function ColorRangeGroup({ label, limit }) {
   const handlePlusClick = () => {
     setCurrentValue((prevState) => {
       if (prevState < limit) {
-        return prevState + 1;
+        return Number(prevState + 1);
       } else {
         return limit;
       }
@@ -24,7 +24,7 @@ export default function ColorRangeGroup({ label, limit }) {
   const handleMinusClick = () => {
     setCurrentValue((prevState) => {
       if (prevState > 0) {
-        return prevState - 1;
+        return Number(prevState - 1);
       } else {
         return 0;
       }
@@ -72,16 +72,19 @@ export default function ColorRangeGroup({ label, limit }) {
     if (regex.test(e.nativeEvent.data)) {
       if (currentValue === 0) {
         setCurrentValue(Number(e.nativeEvent.data));
-        return;
       }
       if (Number(e.target.value) <= limit) {
-        setCurrentValue(e.target.value);
+        setCurrentValue(Number(e.target.value));
       }
     }
   };
 
+  const handleDragOnChange = (e) => {
+    setCurrentValue(e.target.value);
+  };
+
   return (
-    <div className="adjust-h range-group">
+    <div className="range-group">
       <div className="top-portion">
         <label>{label}</label>
         <div className="input-number">
@@ -89,7 +92,7 @@ export default function ColorRangeGroup({ label, limit }) {
             value={currentValue}
             type="text"
             className="number"
-            data-min="0"
+            data-min={0}
             data-max={limit}
             maxLength={3}
             onChange={handleOnChange}
@@ -119,10 +122,10 @@ export default function ColorRangeGroup({ label, limit }) {
       <input
         type="range"
         className="range"
-        min="0"
+        min={0}
         max={limit}
         value={currentValue}
-        onChange={(e) => console.log(e)}
+        onChange={handleDragOnChange}
         style={{
           background:
             "-webkit-linear-gradient(left, rgb(175, 33, 33), rgb(175, 175, 33), rgb(33, 175, 33), rgb(33, 175, 175), rgb(33, 33, 175), rgb(175, 33, 175), rgb(175, 33, 33))",
