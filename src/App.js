@@ -15,7 +15,9 @@ const FancyColoursApp = (props) => {
       {/* <NavBarComp />
       <MainComp /> */}
       <TabsHeader />
-      <ColorRangeGroup label="Hue" />
+      <ColorRangeGroup label="Hue" limit={360} />
+      <ColorRangeGroup label="Saturation" limit={100} />
+      <ColorRangeGroup label="Value" limit={100} />
     </>
   );
 };

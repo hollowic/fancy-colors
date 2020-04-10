@@ -6,23 +6,23 @@ import "./ColorRangeGroup.styles.scss";
 const initWait = 0.5;
 const changeRate = 20;
 
-export default function ColorRangeGroup({ label }) {
-  const [hue, setHue] = useState(10);
+export default function ColorRangeGroup({ label, limit }) {
+  const [currentValue, setCurrentValue] = useState(90);
   const timeoutID = useRef(false);
   const intervalID = useRef(false);
 
   const handlePlusClick = () => {
-    setHue((prevState) => {
-      if (prevState < 360) {
+    setCurrentValue((prevState) => {
+      if (prevState < limit) {
         return prevState + 1;
       } else {
-        return 360;
+        return limit;
       }
     });
   };
 
   const handleMinusClick = () => {
-    setHue((prevState) => {
+    setCurrentValue((prevState) => {
       if (prevState > 0) {
         return prevState - 1;
       } else {
@@ -55,11 +55,11 @@ export default function ColorRangeGroup({ label }) {
         <label>{label}</label>
         <div className="input-number">
           <input
-            value={hue}
+            value={currentValue}
             type="text"
             className="number"
             data-min="0"
-            data-max="360"
+            data-max={limit}
             tabIndex="1"
           />
           <RemoveIcon
@@ -88,8 +88,8 @@ export default function ColorRangeGroup({ label }) {
         type="range"
         className="range"
         min="0"
-        max="360"
-        value={hue}
+        max={limit}
+        value={currentValue}
         style={{
           background:
             "-webkit-linear-gradient(left, rgb(175, 33, 33), rgb(175, 175, 33), rgb(33, 175, 33), rgb(33, 175, 175), rgb(33, 33, 175), rgb(175, 33, 175), rgb(175, 33, 33))",
