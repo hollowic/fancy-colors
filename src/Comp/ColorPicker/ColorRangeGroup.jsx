@@ -18,8 +18,27 @@ export default function ColorRangeGroup() {
     }
   };
 
+  let timeoutID, intervalID;
   const initWait = 0.5;
   const changeRate = 20;
+
+  const waitIsOver = () => {
+    intervalID = setInterval(handlePlusClick, 1000 / changeRate);
+    console.log(intervalID);
+  };
+
+  const callBackOnceAndWait = () => {
+    handlePlusClick();
+    console.log("in here");
+    timeoutID = setTimeout(waitIsOver, initWait * 1000);
+    console.log(timeoutID);
+  };
+
+  const stopTimers = () => {
+    console.log("out here", timeoutID, intervalID);
+    clearTimeout(timeoutID);
+    clearInterval(intervalID);
+  };
 
   return (
     <div className="adjust-h range-group">
@@ -34,8 +53,17 @@ export default function ColorRangeGroup() {
             data-max="360"
             tabIndex="1"
           />
-          <RemoveIcon className="minus" onClick={handleMinusClick} />
-          <AddIcon className="plus" onClick={handlePlusClick} />
+          <RemoveIcon className="minus" />
+          <AddIcon
+            className="plus"
+            onTouchStart={callBackOnceAndWait}
+            onTouchEnd={stopTimers}
+            onTouchMove={stopTimers}
+            onMouseDown={callBackOnceAndWait}
+            onMouseUp={stopTimers}
+            onMouseLeave={stopTimers}
+            onClick={stopTimers}
+          />
         </div>
       </div>
       <input
