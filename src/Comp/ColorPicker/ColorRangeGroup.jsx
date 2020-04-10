@@ -3,25 +3,33 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import "./ColorRangeGroup.styles.scss";
 
-export default function ColorRangeGroup() {
-  const [hue, setHue] = useState(300);
+const initWait = 0.5;
+const changeRate = 20;
+
+export default function ColorRangeGroup({ label }) {
+  const [hue, setHue] = useState(10);
   const timeoutID = useRef(false);
   const intervalID = useRef(false);
 
   const handlePlusClick = () => {
-    if (hue < 360) {
-      setHue((prevState) => prevState + 1);
-    }
+    setHue((prevState) => {
+      if (prevState < 360) {
+        return prevState + 1;
+      } else {
+        return 360;
+      }
+    });
   };
 
   const handleMinusClick = () => {
-    if (hue > 0) {
-      setHue((prevState) => prevState - 1);
-    }
+    setHue((prevState) => {
+      if (prevState > 0) {
+        return prevState - 1;
+      } else {
+        return 0;
+      }
+    });
   };
-
-  const initWait = 0.5;
-  const changeRate = 20;
 
   const waitIsOver = (input) => {
     if (input) {
@@ -44,7 +52,7 @@ export default function ColorRangeGroup() {
   return (
     <div className="adjust-h range-group">
       <div className="top-portion">
-        <label>Hue</label>
+        <label>{label}</label>
         <div className="input-number">
           <input
             value={hue}
@@ -83,8 +91,6 @@ export default function ColorRangeGroup() {
         max="360"
         value={hue}
         style={{
-          width: "100%",
-          height: 14,
           background:
             "-webkit-linear-gradient(left, rgb(175, 33, 33), rgb(175, 175, 33), rgb(33, 175, 33), rgb(33, 175, 175), rgb(33, 33, 175), rgb(175, 33, 175), rgb(175, 33, 33))",
         }}
