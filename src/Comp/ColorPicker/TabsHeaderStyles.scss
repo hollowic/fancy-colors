@@ -13,5 +13,24 @@
         align-items: center;
         padding: 0rem;
         margin: 0rem;
+
+        li {
+            cursor: pointer;
+            position: relative;
+        }
+
+        li.active {
+            color: #0facf3;
+        }
+
+        li.active:after {
+            content: '';
+            position: absolute;
+            background: #0facf3;
+            width: 100%;
+            height: 1px;
+            bottom: -13px;
+            left: 0;
+        }
     }
 }

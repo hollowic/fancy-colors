@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TabsHeaderStyles.scss";
 
-export default function TabsHeader() {
-  const [active, setActive] = useState(initialState);
-
-  const handleActiveTab = () => {};
-
+export default function TabsHeader({ active, handleActiveTab }) {
   return (
     <div className="tabs-header">
       <ul>
         <li
-          className={false ? "active" : "inactive"}
-          onClick={() => console.log("I am clicked")}
+          label="hsv"
+          className={active === "hsv" ? "active" : "inactive"}
+          onClick={() => handleActiveTab("hsv")}
         >
           HSV
         </li>
         <li
-          className={false ? "active" : "inactive"}
-          onClick={() => console.log("I am clicked")}
+          label="rgb"
+          className={active === "rgb" ? "active" : "inactive"}
+          onClick={() => handleActiveTab("rgb")}
         >
           RGB
         </li>
         <li
-          className={false ? "active" : "inactive"}
-          onClick={() => console.log("I am clicked")}
+          label="pick"
+          className={active === "pick" ? "active" : "inactive"}
+          onClick={() => handleActiveTab("pick")}
         >
           PICK
         </li>

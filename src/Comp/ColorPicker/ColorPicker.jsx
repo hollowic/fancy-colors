@@ -1,19 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import TabsHeader from "./TabsHeader";
 import ColorRangeGroup from "./ColorRangeGroup";
 import "./ColorPickerStyles.scss";
 
-const ColorPicker = (props) => {
+const ColorPicker = ({ initialValue }) => {
+  const [active, setActive] = useState("hsv");
+
+  const handleActiveTab = (activateTab) => {
+    setActive(activateTab);
+  };
+
   return (
     <div className="adjust-color">
-      <TabsHeader />
-      <div className="hsv-tab tab">
+      <TabsHeader handleActiveTab={handleActiveTab} active={active} />
+      <div
+        className={
+          active === "hsv" ? "hsv-tab tab visible" : "hsv-tab tab hidden"
+        }
+      >
         <ColorRangeGroup label="Hue" limit={360} />
         <ColorRangeGroup label="Saturation" limit={100} />
         <ColorRangeGroup label="Value" limit={100} />
       </div>
 
-      <div className="rgb-tab tab">
+      <div
+        className={
+          active === "rgb" ? "rgb-tab tab visible" : "rgb-tab tab hidden"
+        }
+      >
         <ColorRangeGroup label="Red" limit={255} />
         <ColorRangeGroup label="Green" limit={255} />
         <ColorRangeGroup label="Blue" limit={255} />
