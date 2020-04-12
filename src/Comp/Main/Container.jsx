@@ -19,7 +19,7 @@ const Container = (props) => {
           if (el.isLocked) {
             return el;
           } else {
-            return { colour: generateRandomHexValue(), isLocked: false };
+            return { ...el, colour: generateRandomHexValue() };
           }
         });
       });

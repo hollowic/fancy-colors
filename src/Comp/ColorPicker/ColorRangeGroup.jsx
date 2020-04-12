@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
-import "./ColorRangeGroup.styles.scss";
+import "./ColorRangeGroupStyles.scss";
 
 const initWait = 0.5;
 const changeRate = 20;

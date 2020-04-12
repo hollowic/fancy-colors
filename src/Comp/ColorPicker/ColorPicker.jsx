@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TabsHeader from "./TabsHeader";
 import ColorRangeGroup from "./ColorRangeGroup";
+import ColorGradient from "./ColorGradient";
 import "./ColorPickerStyles.scss";
 
 const ColorPicker = ({ initialValue }) => {
@@ -33,7 +34,14 @@ const ColorPicker = ({ initialValue }) => {
         <ColorRangeGroup label="Blue" limit={255} />
       </div>
 
-      <div className="pick-tab"></div>
+      <div
+        className={
+          active === "pick" ? "pick-tab tab visible" : "pick-tab tab hidden"
+        }
+      >
+        <ColorGradient />
+        <ColorRangeGroup label="Hue" limit={360} />
+      </div>
     </div>
   );
 };
