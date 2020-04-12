@@ -5,7 +5,7 @@ import ColorGradient from "./ColorGradient";
 import "./ColorPickerStyles.scss";
 import { HexToHSL, HexToRGB } from "../../Helpers/helperFn";
 
-const ColorPicker = ({ initialValue }) => {
+const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
   const [active, setActive] = useState("hsl");
   const [HSLParams, setHSLParams] = useState([]);
   const [RGBParams, setRGBParams] = useState([]);
@@ -27,16 +27,26 @@ const ColorPicker = ({ initialValue }) => {
           active === "hsl" ? "hsl-tab tab visible" : "hsl-tab tab hidden"
         }
       >
-        <ColorRangeGroup label="Hue" limit={360} initialValue={HSLParams[0]} />
+        <ColorRangeGroup
+          label="Hue"
+          index={index}
+          limit={360}
+          initialParam={HSLParams[0]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
+        />
         <ColorRangeGroup
           label="Saturation"
+          index={index}
           limit={100}
-          initialValue={HSLParams[1]}
+          initialParam={HSLParams[1]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
           label="Luminance"
+          index={index}
           limit={100}
-          initialValue={HSLParams[2]}
+          initialParam={HSLParams[2]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
       </div>
       <div
@@ -44,13 +54,27 @@ const ColorPicker = ({ initialValue }) => {
           active === "rgb" ? "rgb-tab tab visible" : "rgb-tab tab hidden"
         }
       >
-        <ColorRangeGroup label="Red" limit={255} initialValue={RGBParams[0]} />
+        <ColorRangeGroup
+          label="Red"
+          index={index}
+          limit={255}
+          initialParam={RGBParams[0]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
+        />
         <ColorRangeGroup
           label="Green"
+          index={index}
           limit={255}
-          initialValue={RGBParams[1]}
+          initialParam={RGBParams[1]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
-        <ColorRangeGroup label="Blue" limit={255} initialValue={RGBParams[2]} />
+        <ColorRangeGroup
+          label="Blue"
+          index={index}
+          limit={255}
+          initialParam={RGBParams[2]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
+        />
       </div>
       <div
         className={
@@ -58,7 +82,13 @@ const ColorPicker = ({ initialValue }) => {
         }
       >
         <ColorGradient />
-        <ColorRangeGroup label="Hue" limit={360} initialValue={HSLParams[0]} />
+        <ColorRangeGroup
+          label="Hue"
+          index={index}
+          limit={360}
+          initialParam={HSLParams[0]}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
+        />
       </div>
     </div>
   );

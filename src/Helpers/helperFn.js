@@ -61,11 +61,9 @@ export function HexToHSL(hex) {
 
 //Convert HSL to HEX
 export function HSLToHex(hsl) {
-  hsl = hsl.substr(4).split(")")[0].split(",");
-
   let h = hsl[0],
-    s = hsl[1].substr(0, hsl[1].length - 1) / 100,
-    l = hsl[2].substr(0, hsl[2].length - 1) / 100;
+    s = hsl[1] / 100,
+    l = hsl[2] / 100;
 
   let c = (1 - Math.abs(2 * l - 1)) * s,
     x = c * (1 - Math.abs(((h / 60) % 2) - 1)),

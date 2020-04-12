@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./ContainerStyles.scss";
 import StripeComp from "./Stripe";
-import { generateRandomHexValue } from "../../Helpers/helperFn";
+import {
+  generateRandomHexValue,
+  HexToHSL,
+  HSLToHex,
+  HexToRGB,
+  RGBToHSL,
+} from "../../Helpers/helperFn";
 
 const Container = (props) => {
   const [colours, setColours] = useState([
-    { colour: generateRandomHexValue(), isLocked: false },
-    { colour: generateRandomHexValue(), isLocked: false },
-    { colour: generateRandomHexValue(), isLocked: false },
-    { colour: generateRandomHexValue(), isLocked: false },
-    { colour: generateRandomHexValue(), isLocked: false },
+    { ID: 1, colour: generateRandomHexValue(), isLocked: false },
+    { ID: 2, colour: generateRandomHexValue(), isLocked: false },
+    { ID: 3, colour: generateRandomHexValue(), isLocked: false },
+    { ID: 4, colour: generateRandomHexValue(), isLocked: false },
+    { ID: 5, colour: generateRandomHexValue(), isLocked: false },
   ]);
+
+  const adjustmentContext = useContext(colours);
+  //#AADDFF (Hue+1) => #AADBFF
 
   const handleSpacebarPress = (e) => {
     if (e.key === " ") {
@@ -31,7 +40,7 @@ const Container = (props) => {
       colours.map((el, i) => {
         if (i === index) {
           const newLockedStatus = el.isLocked ? false : true;
-          return { colour: el.colour, isLocked: newLockedStatus };
+          return { ...el, isLocked: newLockedStatus };
         } else {
           return el;
         }
@@ -39,7 +48,7 @@ const Container = (props) => {
     );
   };
 
-  const handleColourChange = (index, hexValue) => {
+  const handleEditColourChange = (index, hexValue) => {
     setColours(
       colours.map((el, i) => {
         if (i === index) {
@@ -49,6 +58,21 @@ const Container = (props) => {
         }
       })
     );
+  };
+
+  const handleAdjustmentColourChange = (index, label) => {
+    if (label === "Hue") {
+    }
+    if (label === "Saturation") {
+    }
+    if (label === "Luminance") {
+    }
+    if (label === "Red") {
+    }
+    if (label === "Green") {
+    }
+    if (label === "Blue") {
+    }
   };
 
   useEffect(() => {
@@ -62,10 +86,11 @@ const Container = (props) => {
           <StripeComp
             key={i}
             index={i}
+            isLocked={el.isLocked}
             backgroundColour={el.colour}
             handleLockClick={handleLockClick}
-            handleColourChange={handleColourChange}
-            isLocked={el.isLocked}
+            handleEditColourChange={handleEditColourChange}
+            handleAdjustmentColourChange={handleAdjustmentColourChange}
           />
         );
       })}

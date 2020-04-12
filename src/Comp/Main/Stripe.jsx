@@ -5,11 +5,12 @@ import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
 
 const Stripe = ({
-  backgroundColour,
+  index,
   isLocked,
   handleLockClick,
-  handleColourChange,
-  index,
+  backgroundColour,
+  handleEditColourChange,
+  handleAdjustmentColourChange,
 }) => {
   const [colour, setColour] = useState(backgroundColour);
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
@@ -63,7 +64,7 @@ const Stripe = ({
       if (currentValue.length === 6) {
         currentValue = "#" + currentValue;
       }
-      handleColourChange(index, currentValue);
+      handleEditColourChange(index, currentValue);
     }
   };
 
@@ -88,7 +89,13 @@ const Stripe = ({
         <i className="fas fa-sliders-h" onClick={handleAdjustClick} />
       </Tooltip>
 
-      {colorPickerVisible && <ColorPicker initialValue={backgroundColour} />}
+      {colorPickerVisible && (
+        <ColorPicker
+          initialValue={backgroundColour}
+          index={index}
+          handleAdjustmentColourChange={handleAdjustmentColourChange}
+        />
+      )}
 
       {isLocked ? (
         <Tooltip title="Unlock" arrow placement="top">

@@ -101,7 +101,7 @@ test("HSLToRGB returns a valid RGB value, given a valid HSL value", () => {
 });
 
 test("HSLToHex returns a valid Hex value, given a valid HSL value", () => {
-  const HSL = "hsl(255,74%,77%)";
+  const HSL = [255, 74, 77];
   const HEX = "#AF99F0";
   expect(HSLToHex(HSL)).toBe(HEX);
 });

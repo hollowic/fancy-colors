@@ -6,14 +6,19 @@ import "./ColorRangeGroupStyles.scss";
 const initWait = 0.5;
 const changeRate = 20;
 
-export default function ColorRangeGroup({ label, limit, initialValue }) {
-  const [currentValue, setCurrentValue] = useState(initialValue);
+export default function ColorRangeGroup({
+  label,
+  limit,
+  initialParam,
+  handleAdjustmentColourChange,
+}) {
+  const [currentValue, setCurrentValue] = useState(initialParam);
   const timeoutID = useRef(false);
   const intervalID = useRef(false);
 
   useEffect(() => {
-    setCurrentValue(initialValue);
-  }, [initialValue]);
+    setCurrentValue(initialParam);
+  }, [initialParam]);
 
   const handlePlusClick = () => {
     setCurrentValue((prevState) => {
