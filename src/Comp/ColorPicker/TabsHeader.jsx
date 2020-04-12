@@ -6,11 +6,11 @@ export default function TabsHeader({ active, handleActiveTab }) {
     <div className="tabs-header">
       <ul>
         <li
-          label="hsv"
-          className={active === "hsv" ? "active" : "inactive"}
-          onClick={() => handleActiveTab("hsv")}
+          label="hsl"
+          className={active === "hsl" ? "active" : "inactive"}
+          onClick={() => handleActiveTab("hsl")}
         >
-          HSV
+          HSL
         </li>
         <li
           label="rgb"

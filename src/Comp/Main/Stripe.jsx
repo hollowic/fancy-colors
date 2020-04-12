@@ -88,7 +88,7 @@ const Stripe = ({
         <i className="fas fa-sliders-h" onClick={handleAdjustClick} />
       </Tooltip>
 
-      {colorPickerVisible && <ColorPicker />}
+      {colorPickerVisible && <ColorPicker initialValue={backgroundColour} />}
 
       {isLocked ? (
         <Tooltip title="Unlock" arrow placement="top">

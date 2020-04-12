@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import "./ColorRangeGroupStyles.scss";
@@ -6,10 +6,14 @@ import "./ColorRangeGroupStyles.scss";
 const initWait = 0.5;
 const changeRate = 20;
 
-export default function ColorRangeGroup({ label, limit }) {
-  const [currentValue, setCurrentValue] = useState(100);
+export default function ColorRangeGroup({ label, limit, initialValue }) {
+  const [currentValue, setCurrentValue] = useState(initialValue);
   const timeoutID = useRef(false);
   const intervalID = useRef(false);
+
+  useEffect(() => {
+    setCurrentValue(initialValue);
+  }, [initialValue]);
 
   const handlePlusClick = () => {
     setCurrentValue((prevState) => {

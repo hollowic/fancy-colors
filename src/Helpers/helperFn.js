@@ -56,7 +56,7 @@ export function HexToHSL(hex) {
   s = +(s * 100).toFixed(0);
   l = +(l * 100).toFixed(0);
 
-  return "hsl(" + h + "," + s + "%," + l + "%)";
+  return [h, s, l];
 }
 
 //Convert HSL to HEX
@@ -131,7 +131,7 @@ export function HexToRGB(hex) {
     b = "0x" + hex[5] + hex[6];
   }
 
-  return "rgb(" + +r + "," + +g + "," + +b + ")";
+  return [+r, +g, +b];
 }
 
 //Convert RGB to HEX
