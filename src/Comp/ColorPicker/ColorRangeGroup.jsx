@@ -80,7 +80,7 @@ export default function ColorRangeGroup({ label, limit }) {
   };
 
   const handleDragOnChange = (e) => {
-    setCurrentValue(e.target.value);
+    setCurrentValue(Number(e.target.value));
   };
 
   return (
