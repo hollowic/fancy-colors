@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ColorPicker from "../ColorPicker/ColorPicker";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
@@ -11,6 +12,7 @@ const Stripe = ({
   index,
 }) => {
   const [colour, setColour] = useState(backgroundColour);
+  const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
   useEffect(() => {
     setColour(backgroundColour);
@@ -65,25 +67,31 @@ const Stripe = ({
     }
   };
 
+  const handleAdjustClick = () => {
+    setColorPickerVisible((prevState) => !prevState);
+  };
+
   return (
     <div
       className="single-stripe"
       style={{ backgroundColor: backgroundColour }}
     >
-      <Tooltip title="Alternative shades" arrow>
+      <Tooltip title="Alternative shades" arrow placement="top">
         <i className="fas fa-th" />
       </Tooltip>
 
-      <Tooltip title="Drag" arrow>
+      <Tooltip title="Drag" arrow placement="top">
         <i className="fas fa-arrows-alt-h" />
       </Tooltip>
 
-      <Tooltip title="Adjust" arrow>
-        <i className="fas fa-sliders-h" />
+      <Tooltip title="Adjust" arrow placement="top">
+        <i className="fas fa-sliders-h" onClick={handleAdjustClick} />
       </Tooltip>
 
+      {colorPickerVisible && <ColorPicker />}
+
       {isLocked ? (
-        <Tooltip title="Unlock" arrow>
+        <Tooltip title="Unlock" arrow placement="top">
           <i
             className="fas fa-lock"
             onClick={() => handleLockClick(index)}
@@ -91,7 +99,7 @@ const Stripe = ({
           />
         </Tooltip>
       ) : (
-        <Tooltip title="Lock" arrow>
+        <Tooltip title="Lock" arrow placement="top">
           <i
             className="fas fa-lock-open"
             onClick={() => handleLockClick(index)}
@@ -99,8 +107,9 @@ const Stripe = ({
         </Tooltip>
       )}
 
-      <Tooltip title="Edit" arrow>
+      <Tooltip title="Edit" arrow placement="top">
         <input
+          className="edit-color"
           disabled={isLocked}
           ref={textInput}
           type="text"

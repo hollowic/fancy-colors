@@ -5,6 +5,7 @@
     align-items: center;
     height: calc(100vh - 57px);
     width: calc(100% / 5);
+    position: relative;
 
     .fas {
         visibility: hidden;
@@ -24,7 +25,7 @@
         cursor: grab;
     }
 
-    input {
+    input.edit-color {
         width: 100%;
         border: none;
         background-color: transparent;
@@ -37,11 +38,11 @@
         text-transform: uppercase;
     }
 
-    input:hover {
+    input.edit-color:hover {
         opacity: 1;
     }
 
-    input:focus {
+    input.edit-color:focus {
         outline: 0;
     }
 }
