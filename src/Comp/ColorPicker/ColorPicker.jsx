@@ -7,8 +7,8 @@ import { HexToHSL, HexToRGB } from "../../Helpers/helperFn";
 
 const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
   const [active, setActive] = useState("hsl");
-  const [HSLParams, setHSLParams] = useState([]);
-  const [RGBParams, setRGBParams] = useState([]);
+  const [HSLParams, setHSLParams] = useState([0, 0, 0]);
+  const [RGBParams, setRGBParams] = useState([0, 0, 0]);
 
   useEffect(() => {
     setHSLParams(HexToHSL(initialValue));

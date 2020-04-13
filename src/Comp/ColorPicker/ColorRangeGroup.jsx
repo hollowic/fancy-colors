@@ -8,6 +8,7 @@ const changeRate = 20;
 
 export default function ColorRangeGroup({
   label,
+  index,
   limit,
   initialParam,
   handleAdjustmentColourChange,
@@ -23,6 +24,7 @@ export default function ColorRangeGroup({
   const handlePlusClick = () => {
     setCurrentValue((prevState) => {
       if (prevState < limit) {
+        handleAdjustmentColourChange(index, label, Number(prevState + 1));
         return Number(prevState + 1);
       } else {
         return limit;
@@ -33,6 +35,7 @@ export default function ColorRangeGroup({
   const handleMinusClick = () => {
     setCurrentValue((prevState) => {
       if (prevState > 0) {
+        handleAdjustmentColourChange(index, label, Number(prevState - 1));
         return Number(prevState - 1);
       } else {
         return 0;
