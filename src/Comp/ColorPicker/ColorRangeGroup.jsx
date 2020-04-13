@@ -93,6 +93,7 @@ export default function ColorRangeGroup({
 
   const handleDragOnChange = (e) => {
     setCurrentValue(Number(e.target.value));
+    handleAdjustmentColourChange(index, label, Number(e.target.value));
   };
 
   return (
