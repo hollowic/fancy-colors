@@ -30,7 +30,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
         <ColorRangeGroup
           label="Hue"
           index={index}
-          limit={360}
+          limit={359}
           initialParam={HSLParams[0]}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
@@ -85,7 +85,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
         <ColorRangeGroup
           label="Hue"
           index={index}
-          limit={360}
+          limit={359}
           initialParam={HSLParams[0]}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
