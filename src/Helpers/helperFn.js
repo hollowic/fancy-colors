@@ -17,7 +17,7 @@ export function validateHexValue(input) {
 }
 
 //Convert HEX to HSL
-export function HexToHSL(hex) {
+export function hexToHsl(hex) {
   // Convert hex to RGB first
   let r = 0,
     g = 0,
@@ -60,7 +60,7 @@ export function HexToHSL(hex) {
 }
 
 //Convert HSL to HEX
-export function HSLToHex(hsl) {
+export function hslToHex(hsl) {
   let h = (hsl[0] /= 360);
   let s = (hsl[1] /= 100);
   let l = (hsl[2] /= 100);
@@ -90,7 +90,7 @@ export function HSLToHex(hsl) {
 }
 
 //Convert HEX to RGB
-export function HexToRGB(hex) {
+export function hexToRgb(hex) {
   let r = 0,
     g = 0,
     b = 0;
@@ -111,8 +111,91 @@ export function HexToRGB(hex) {
   return [+r, +g, +b];
 }
 
+//Convert RGB to HSV
+export function rgbToHsv(rgb) {
+  let r = rgb[0] / 255;
+  let g = rgb[1] / 255;
+  let b = rgb[2] / 255;
+  let max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
+  let h,
+    s,
+    v = max;
+
+  let d = max - min;
+  s = max === 0 ? 0 : d / max;
+
+  if (max === min) {
+    h = 0; // achromatic
+  } else {
+    if (max === r) {
+      h = (g - b) / d + (g < b ? 6 : 0);
+    }
+    if (max === g) {
+      h = (b - r) / d + 2;
+    }
+    if (max === b) {
+      h = (r - g) / d + 4;
+    }
+
+    h *= 60;
+  }
+
+  return [Math.round(h), Math.round(s * 100), Math.round(v * 100)];
+}
+
+//Convert HSV t RGB
+export function hsvToRgb(hsv) {
+  let h = hsv[0] / 360;
+  let s = hsv[1] / 100;
+  let v = hsv[2] / 100;
+  let r, g, b, i, f, p, q, t;
+
+  i = Math.floor(h * 6);
+  f = h * 6 - i;
+  p = v * (1 - s);
+  q = v * (1 - f * s);
+  t = v * (1 - (1 - f) * s);
+
+  if (i % 6 === 0) {
+    r = v;
+    g = t;
+    b = p;
+  }
+  if (i % 6 === 1) {
+    r = q;
+    g = v;
+    b = p;
+  }
+  if (i % 6 === 2) {
+    r = p;
+    g = v;
+    b = t;
+  }
+
+  if (i % 6 === 3) {
+    r = p;
+    g = q;
+    b = v;
+  }
+
+  if (i % 6 === 4) {
+    r = t;
+    g = p;
+    b = v;
+  }
+
+  if (i % 6 === 5) {
+    r = v;
+    g = p;
+    b = q;
+  }
+
+  return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
+
 //Convert RGB to HEX
-export function RGBToHex(rgb) {
+export function rgbToHex(rgb) {
   let r = (+rgb[0]).toString(16),
     g = (+rgb[1]).toString(16),
     b = (+rgb[2]).toString(16);
@@ -125,7 +208,7 @@ export function RGBToHex(rgb) {
 }
 
 //Convert RGB to HSL
-export function RGBToHSL(rgb) {
+export function rgbToHsl(rgb) {
   rgb = rgb.substr(4).split(")")[0].split(",");
 
   // Make r, g, and b fractions of 1
@@ -170,7 +253,7 @@ export function RGBToHSL(rgb) {
 }
 
 //Convert HSL to RGB
-export function HSLToRGB(hsl) {
+export function hslToRgb(hsl) {
   hsl = hsl.substr(4).split(")")[0].split(",");
 
   let h = hsl[0],

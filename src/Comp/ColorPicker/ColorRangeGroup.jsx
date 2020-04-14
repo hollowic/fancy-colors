@@ -105,8 +105,8 @@ export default function ColorRangeGroup({
             value={currentValue}
             type="text"
             className="number"
-            data-min={0}
-            data-max={limit}
+            min={0}
+            max={limit}
             maxLength={3}
             onChange={handleOnChange}
           />

@@ -3,16 +3,16 @@ import TabsHeader from "./TabsHeader";
 import ColorRangeGroup from "./ColorRangeGroup";
 import ColorGradient from "./ColorGradient";
 import "./ColorPickerStyles.scss";
-import { HexToHSL, HexToRGB } from "../../Helpers/helperFn";
+import { hexToRgb, rgbToHsv } from "../../Helpers/helperFn";
 
 const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
-  const [active, setActive] = useState("hsl");
+  const [active, setActive] = useState("hsb");
   const [HSLParams, setHSLParams] = useState([0, 0, 0]);
   const [RGBParams, setRGBParams] = useState([0, 0, 0]);
 
   useEffect(() => {
-    setHSLParams(HexToHSL(initialValue));
-    setRGBParams(HexToRGB(initialValue));
+    setHSLParams(rgbToHsv(hexToRgb(initialValue)));
+    setRGBParams(hexToRgb(initialValue));
   }, [initialValue]);
 
   const handleActiveTab = (activateTab) => {
@@ -24,7 +24,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
       <TabsHeader handleActiveTab={handleActiveTab} active={active} />
       <div
         className={
-          active === "hsl" ? "hsl-tab tab visible" : "hsl-tab tab hidden"
+          active === "hsb" ? "hsb-tab tab visible" : "hsb-tab tab hidden"
         }
       >
         <ColorRangeGroup
@@ -42,7 +42,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
-          label="Luminance"
+          label="Brightness"
           index={index}
           limit={100}
           initialParam={HSLParams[2]}

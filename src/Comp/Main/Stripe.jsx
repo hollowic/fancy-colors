@@ -3,8 +3,8 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue } from "../../Helpers/helperFn";
-
 const Stripe = ({
+  ID,
   index,
   isLocked,
   handleLockClick,

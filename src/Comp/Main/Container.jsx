@@ -3,13 +3,13 @@ import "./ContainerStyles.scss";
 import StripeComp from "./Stripe";
 import {
   generateRandomHexValue,
-  HexToHSL,
-  HSLToHex,
-  HexToRGB,
-  RGBToHex,
+  hexToRgb,
+  rgbToHex,
+  rgbToHsv,
+  hsvToRgb,
 } from "../../Helpers/helperFn";
 
-const Container = (props) => {
+const Container = ({ innerRef }) => {
   const [colours, setColours] = useState([
     { ID: 1, colour: generateRandomHexValue(), isLocked: false },
     { ID: 2, colour: generateRandomHexValue(), isLocked: false },
@@ -64,11 +64,13 @@ const Container = (props) => {
           if (i === index) {
             return {
               ...el,
-              colour: HSLToHex([
-                newValue,
-                HexToHSL(prevState[i].colour)[1],
-                HexToHSL(prevState[i].colour)[2],
-              ]),
+              colour: rgbToHex(
+                hsvToRgb([
+                  newValue,
+                  rgbToHsv(hexToRgb(prevState[i].colour))[1],
+                  rgbToHsv(hexToRgb(prevState[i].colour))[2],
+                ])
+              ),
             };
           } else {
             return el;
@@ -82,11 +84,13 @@ const Container = (props) => {
           if (i === index) {
             return {
               ...el,
-              colour: HSLToHex([
-                HexToHSL(prevState[i].colour)[0],
-                newValue,
-                HexToHSL(prevState[i].colour)[2],
-              ]),
+              colour: rgbToHex(
+                hsvToRgb([
+                  rgbToHsv(hexToRgb(prevState[i].colour))[0],
+                  newValue,
+                  rgbToHsv(hexToRgb(prevState[i].colour))[2],
+                ])
+              ),
             };
           } else {
             return el;
@@ -94,17 +98,19 @@ const Container = (props) => {
         })
       );
     }
-    if (label === "Luminance") {
+    if (label === "Brightness") {
       setColours((prevState) =>
         colours.map((el, i) => {
           if (i === index) {
             return {
               ...el,
-              colour: HSLToHex([
-                HexToHSL(prevState[i].colour)[0],
-                HexToHSL(prevState[i].colour)[1],
-                newValue,
-              ]),
+              colour: rgbToHex(
+                hsvToRgb([
+                  rgbToHsv(hexToRgb(prevState[i].colour))[0],
+                  rgbToHsv(hexToRgb(prevState[i].colour))[1],
+                  newValue,
+                ])
+              ),
             };
           } else {
             return el;
@@ -118,10 +124,10 @@ const Container = (props) => {
           if (i === index) {
             return {
               ...el,
-              colour: RGBToHex([
+              colour: rgbToHex([
                 newValue,
-                HexToRGB(prevState[i].colour)[1],
-                HexToRGB(prevState[i].colour)[2],
+                hexToRgb(prevState[i].colour)[1],
+                hexToRgb(prevState[i].colour)[2],
               ]),
             };
           } else {
@@ -136,10 +142,10 @@ const Container = (props) => {
           if (i === index) {
             return {
               ...el,
-              colour: RGBToHex([
-                HexToRGB(prevState[i].colour)[0],
+              colour: rgbToHex([
+                hexToRgb(prevState[i].colour)[0],
                 newValue,
-                HexToRGB(prevState[i].colour)[2],
+                hexToRgb(prevState[i].colour)[2],
               ]),
             };
           } else {
@@ -154,9 +160,9 @@ const Container = (props) => {
           if (i === index) {
             return {
               ...el,
-              colour: RGBToHex([
-                HexToRGB(prevState[i].colour)[0],
-                HexToRGB(prevState[i].colour)[1],
+              colour: rgbToHex([
+                hexToRgb(prevState[i].colour)[0],
+                hexToRgb(prevState[i].colour)[1],
                 newValue,
               ]),
             };
@@ -179,6 +185,7 @@ const Container = (props) => {
           <StripeComp
             key={i}
             index={i}
+            ID={String(el.ID)}
             isLocked={el.isLocked}
             backgroundColour={el.colour}
             handleLockClick={handleLockClick}

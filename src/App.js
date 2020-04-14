@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import NavBarComp from "./Comp/NavBar/Header";
 import MainComp from "./Comp/Main/Container";
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
 // import CreatePanelComp from "./Comp/CreatePanel";
 // import ColorPanelComp from "./Comp/ColorPanel";
 // import SideBarComp from "./Comp/SideBar";
@@ -11,7 +13,9 @@ const FancyColoursApp = (props) => {
   return (
     <>
       <NavBarComp />
-      <MainComp />
+      <DndProvider backend={Backend}>
+        <MainComp />
+      </DndProvider>
     </>
   );
 };
