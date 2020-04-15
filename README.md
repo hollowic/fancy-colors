@@ -1,3 +1,9 @@
+## Demo
+
+- https://fancycolors.netlify.com/
+
+!["Index Page"](https://github.com/hollowic/fancy-colors/blob/master/src/Assets/Screen%20Shot%202020-04-14%20at%208.49.41%20PM.png?raw=true)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
