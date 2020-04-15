@@ -37,7 +37,7 @@ const ColorPicker = ({
       className={visible ? "adjust-color" : "adjust-color hidden"}
       tabIndex={index}
       ref={ref}
-      onBlur={handleAdjustClick}
+      // onBlur={handleAdjustClick}
     >
       <TabsHeader handleActiveTab={handleActiveTab} active={active} />
       <div
