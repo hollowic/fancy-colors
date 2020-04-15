@@ -84,8 +84,11 @@ const Stripe = ({
       style={{ backgroundColor: backgroundColour }}
     >
       <AlternateShades
+        index={index}
         initialValue={backgroundColour}
         visible={alternateShadeVisible}
+        handleEditColourChange={handleEditColourChange}
+        handleAlternateShadeClick={handleAlternateShadeClick}
       />
 
       <Tooltip title="Alternative shades" arrow placement="top">

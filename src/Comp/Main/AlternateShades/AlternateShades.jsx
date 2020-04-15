@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./AlternateShadesStyles.scss";
 import { generateShades } from "../../../Helpers/helperFn";
 
-export default function AlternateShades({ initialValue, visible }) {
+export default function AlternateShades({
+  index,
+  visible,
+  initialValue,
+  handleEditColourChange,
+  handleAlternateShadeClick,
+}) {
   const [colorShades, setColorShades] = useState(generateShades(initialValue));
 
   useEffect(() => {
@@ -13,9 +19,17 @@ export default function AlternateShades({ initialValue, visible }) {
     <div
       className={visible ? "alternate-container" : "alternate-container hidden"}
     >
-      {colorShades.map((el) => {
+      {colorShades.map((el, i) => {
         return (
-          <div key={el} className="shades" style={{ background: el }}>
+          <div
+            key={`${i}-${el}`}
+            className="shades"
+            style={{ background: el }}
+            onClick={() => {
+              handleEditColourChange(index, el);
+              handleAlternateShadeClick();
+            }}
+          >
             <div>{el}</div>
           </div>
         );
