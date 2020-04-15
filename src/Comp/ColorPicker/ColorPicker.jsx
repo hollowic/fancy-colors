@@ -10,7 +10,6 @@ const ColorPicker = ({
   visible,
   initialValue,
   handleAdjustmentColourChange,
-  handleAdjustClick,
 }) => {
   const [active, setActive] = useState("hsb");
   const [HSVParams, setHSVParams] = useState([0, 0, 0]);
@@ -34,10 +33,9 @@ const ColorPicker = ({
 
   return (
     <div
-      className={visible ? "adjust-color" : "adjust-color hidden"}
+      className={visible ? `adjust-color` : `adjust-color hidden`}
       tabIndex={index}
       ref={ref}
-      // onBlur={handleAdjustClick}
     >
       <TabsHeader handleActiveTab={handleActiveTab} active={active} />
       <div
