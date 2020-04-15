@@ -4,6 +4,7 @@ import AlternateShades from "./AlternateShades/AlternateShades";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
 import { validateHexValue, hexToRgb } from "../../Helpers/helperFn";
+
 const Stripe = ({
   ID,
   index,
@@ -15,6 +16,7 @@ const Stripe = ({
 }) => {
   const [colour, setColour] = useState(backgroundColour);
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
+  const textInput = useRef(null);
 
   useEffect(() => {
     setColour(backgroundColour);
@@ -24,8 +26,6 @@ const Stripe = ({
     e.target.focus();
     textInput.current.setSelectionRange(1, 7);
   };
-
-  const textInput = useRef(null);
 
   const handleOnChange = (e) => {
     const regex = /[#0-9A-F]/i;
@@ -97,6 +97,7 @@ const Stripe = ({
         index={index}
         handleAdjustmentColourChange={handleAdjustmentColourChange}
         visible={colorPickerVisible}
+        handleAdjustClick={handleAdjustClick}
       />
 
       {isLocked ? (
