@@ -6,7 +6,7 @@ export default function AlternateShades({ initialValue }) {
   return (
     <div className="alternate-container">
       {colorShades.map((el, i) => {
-        return <div></div>;
+        return <div className="shades"></div>;
       })}
     </div>
   );
