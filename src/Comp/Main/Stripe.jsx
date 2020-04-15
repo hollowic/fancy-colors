@@ -16,6 +16,7 @@ const Stripe = ({
 }) => {
   const [colour, setColour] = useState(backgroundColour);
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
+  const [alternateShadeVisible, setAlternateShadeVisible] = useState(false);
   const textInput = useRef(null);
 
   useEffect(() => {
@@ -73,15 +74,22 @@ const Stripe = ({
     setColorPickerVisible((prevState) => !prevState);
   };
 
+  const handleAlternateShadeClick = () => {
+    setAlternateShadeVisible((prevState) => !prevState);
+  };
+
   return (
     <div
       className="single-stripe"
       style={{ backgroundColor: backgroundColour }}
     >
-      <AlternateShades initialValue={backgroundColour} />
+      <AlternateShades
+        initialValue={backgroundColour}
+        visible={alternateShadeVisible}
+      />
 
       <Tooltip title="Alternative shades" arrow placement="top">
-        <i className="fas fa-th" />
+        <i className="fas fa-th" onClick={handleAlternateShadeClick} />
       </Tooltip>
 
       <Tooltip title="Drag" arrow placement="top">
