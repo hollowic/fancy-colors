@@ -298,3 +298,53 @@ export function hslToRgb(hsl) {
 
   return "rgb(" + r + "," + g + "," + b + ")";
 }
+
+export const RGB_Linear_Shade = (p, c) => {
+  let i = parseInt;
+  let r = Math.round;
+  let a, b, d;
+  [a, b, c, d] = c.split(",");
+  let P = p < 0;
+  let t = P ? 0 : 255 * p;
+  P = P ? 1 + p : 1 - p;
+  return (
+    "rgb" +
+    (d ? "a(" : "(") +
+    r(i(a[3] === "a" ? a.slice(5) : a.slice(4)) * P + t) +
+    "," +
+    r(i(b) * P + t) +
+    "," +
+    r(i(c) * P + t) +
+    (d ? "," + d : ")")
+  );
+};
+
+export function generateShades(initialValue) {
+  let rgbArray = hexToRgb(initialValue);
+  let rgb = "rgb(" + rgbArray.join(",") + ")";
+  let rainbow = [];
+
+  for (let i = 10; i > 0; i--) {
+    rainbow.push(
+      RGB_Linear_Shade(i / 10, rgb)
+        .substr(4)
+        .split(")")[0]
+        .split(",")
+    );
+  }
+
+  // rainbow.push(rgbArray);
+
+  for (let i = 0; i < 11; i++) {
+    rainbow.push(
+      RGB_Linear_Shade(-i / 10, rgb)
+        .substr(4)
+        .split(")")[0]
+        .split(",")
+    );
+  }
+
+  return rainbow.map((el) => {
+    return rgbToHex(el);
+  });
+}
