@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import ColorPicker from "../ColorPicker/ColorPicker";
+import AlternateShades from "./AlternateShades/AlternateShades";
 import Tooltip from "@material-ui/core/Tooltip";
 import "./StripeStyles.scss";
-import { validateHexValue } from "../../Helpers/helperFn";
+import { validateHexValue, hexToRgb } from "../../Helpers/helperFn";
 const Stripe = ({
   ID,
   index,
@@ -77,6 +78,8 @@ const Stripe = ({
       className="single-stripe"
       style={{ backgroundColor: backgroundColour }}
     >
+      <AlternateShades initialValue={backgroundColour} />
+
       <Tooltip title="Alternative shades" arrow placement="top">
         <i className="fas fa-th" />
       </Tooltip>
@@ -89,13 +92,12 @@ const Stripe = ({
         <i className="fas fa-sliders-h" onClick={handleAdjustClick} />
       </Tooltip>
 
-      {colorPickerVisible && (
-        <ColorPicker
-          initialValue={backgroundColour}
-          index={index}
-          handleAdjustmentColourChange={handleAdjustmentColourChange}
-        />
-      )}
+      <ColorPicker
+        initialValue={backgroundColour}
+        index={index}
+        handleAdjustmentColourChange={handleAdjustmentColourChange}
+        visible={colorPickerVisible}
+      />
 
       {isLocked ? (
         <Tooltip title="Unlock" arrow placement="top">
@@ -133,6 +135,17 @@ const Stripe = ({
           }}
         />
       </Tooltip>
+
+      <div className="color-info">
+        <div className="color-info-name"></div>
+        <div className="color-info-rgb">{`RGB: ${
+          hexToRgb(backgroundColour)[0]
+        }, ${hexToRgb(backgroundColour)[1]}, ${
+          hexToRgb(backgroundColour)[2]
+        }`}</div>
+        <div className="color-info-hsv"></div>
+        <div className="color-info-cmyk"></div>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ export default function ColorRangeGroup({
   index,
   limit,
   initialParam,
+  RGBParams,
   handleAdjustmentColourChange,
 }) {
   const [currentValue, setCurrentValue] = useState(initialParam);
@@ -96,6 +97,40 @@ export default function ColorRangeGroup({
     handleAdjustmentColourChange(index, label, Number(e.target.value));
   };
 
+  const dynamicStyles = (label) => {
+    if (label === "Hue") {
+      return {
+        background:
+          "-webkit-linear-gradient(left, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0))",
+      };
+    }
+    if (label === "Saturation") {
+      return {
+        background: `-webkit-linear-gradient(left, rgb(255, 255, 255), rgb(${RGBParams[0]}, ${RGBParams[1]}, ${RGBParams[2]})`,
+      };
+    }
+    if (label === "Brightness") {
+      return {
+        background: `-webkit-linear-gradient(left, rgb(0, 0, 0), rgb(${RGBParams[0]}, ${RGBParams[1]}, ${RGBParams[2]})`,
+      };
+    }
+    if (label === "Red") {
+      return {
+        background: `-webkit-linear-gradient(left, rgb(0, ${RGBParams[1]}, ${RGBParams[2]}), rgb(255, ${RGBParams[1]}, ${RGBParams[2]})`,
+      };
+    }
+    if (label === "Green") {
+      return {
+        background: `-webkit-linear-gradient(left, rgb(${RGBParams[0]}, 0, ${RGBParams[2]}), rgb(${RGBParams[0]}, 255, ${RGBParams[2]})`,
+      };
+    }
+    if (label === "Blue") {
+      return {
+        background: `-webkit-linear-gradient(left, rgb(${RGBParams[0]}, ${RGBParams[1]}, 0), rgb(${RGBParams[0]}, ${RGBParams[1]}, 255)`,
+      };
+    }
+  };
+
   return (
     <div className="range-group">
       <div className="top-portion">
@@ -139,10 +174,7 @@ export default function ColorRangeGroup({
         max={limit}
         value={currentValue}
         onChange={handleDragOnChange}
-        style={{
-          background:
-            "-webkit-linear-gradient(left, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0))",
-        }}
+        style={dynamicStyles(label)}
       />
     </div>
   );

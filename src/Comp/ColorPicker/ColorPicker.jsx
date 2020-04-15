@@ -5,13 +5,18 @@ import ColorGradient from "./ColorGradient";
 import "./ColorPickerStyles.scss";
 import { hexToRgb, rgbToHsv } from "../../Helpers/helperFn";
 
-const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
+const ColorPicker = ({
+  initialValue,
+  index,
+  handleAdjustmentColourChange,
+  visible,
+}) => {
   const [active, setActive] = useState("hsb");
-  const [HSLParams, setHSLParams] = useState([0, 0, 0]);
+  const [HSVParams, setHSVParams] = useState([0, 0, 0]);
   const [RGBParams, setRGBParams] = useState([0, 0, 0]);
 
   useEffect(() => {
-    setHSLParams(rgbToHsv(hexToRgb(initialValue)));
+    setHSVParams(rgbToHsv(hexToRgb(initialValue)));
     setRGBParams(hexToRgb(initialValue));
   }, [initialValue]);
 
@@ -20,7 +25,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
   };
 
   return (
-    <div className="adjust-color">
+    <div className={visible ? "adjust-color" : "adjust-color hidden"}>
       <TabsHeader handleActiveTab={handleActiveTab} active={active} />
       <div
         className={
@@ -31,21 +36,23 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           label="Hue"
           index={index}
           limit={359}
-          initialParam={HSLParams[0]}
+          initialParam={HSVParams[0]}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
           label="Saturation"
           index={index}
           limit={100}
-          initialParam={HSLParams[1]}
+          initialParam={HSVParams[1]}
+          RGBParams={RGBParams}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
           label="Brightness"
           index={index}
           limit={100}
-          initialParam={HSLParams[2]}
+          initialParam={HSVParams[2]}
+          RGBParams={RGBParams}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
       </div>
@@ -59,6 +66,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           index={index}
           limit={255}
           initialParam={RGBParams[0]}
+          RGBParams={RGBParams}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
@@ -66,6 +74,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           index={index}
           limit={255}
           initialParam={RGBParams[1]}
+          RGBParams={RGBParams}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
         <ColorRangeGroup
@@ -73,6 +82,7 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           index={index}
           limit={255}
           initialParam={RGBParams[2]}
+          RGBParams={RGBParams}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
       </div>
@@ -81,12 +91,12 @@ const ColorPicker = ({ initialValue, index, handleAdjustmentColourChange }) => {
           active === "pick" ? "pick-tab tab visible" : "pick-tab tab hidden"
         }
       >
-        <ColorGradient />
+        <ColorGradient RGBParams={RGBParams} />
         <ColorRangeGroup
           label="Hue"
           index={index}
           limit={359}
-          initialParam={HSLParams[0]}
+          initialParam={HSVParams[0]}
           handleAdjustmentColourChange={handleAdjustmentColourChange}
         />
       </div>
