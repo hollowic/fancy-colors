@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import SettingsModal from "./Modals/SettingModal";
+import HelpModal from "./Modals/HelpModal";
 import "./SubHeaderStyles.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
 export default function SubHeader() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState({
+    help: false,
+    settings: false,
+    camera: false,
+    shades: false,
+    export: false,
+  });
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpen = (item) => {
+    setOpen((prevState) => {
+      return { ...prevState, [item]: true };
+    });
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (item) => {
+    setOpen((prevState) => {
+      return { ...prevState, [item]: false };
+    });
   };
 
   return (
@@ -20,12 +31,15 @@ export default function SubHeader() {
       <ul>
         <li>
           <Tooltip title="Help" arrow placement="top">
-            <i className="fas fa-question-circle"></i>
+            <i
+              className="fas fa-question-circle"
+              onClick={() => handleOpen("help")}
+            />
           </Tooltip>
         </li>
         <li>
           <Tooltip title="Settings" arrow placement="top">
-            <i className="fas fa-cog" onClick={handleOpen} />
+            <i className="fas fa-cog" onClick={() => handleOpen("settings")} />
           </Tooltip>
         </li>
         <li>
@@ -49,7 +63,8 @@ export default function SubHeader() {
           </Tooltip>
         </li>
       </ul>
-      <SettingsModal handleClose={handleClose} open={open} />
+      <HelpModal handleClose={handleClose} open={open.help} />
+      <SettingsModal handleClose={handleClose} open={open.settings} />
     </div>
   );
 }

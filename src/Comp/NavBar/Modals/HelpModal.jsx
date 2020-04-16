@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SettingModal({ open, handleClose }) {
+export default function HelpModal({ open, handleClose }) {
   const classes = useStyles();
   return (
     <>
@@ -30,7 +30,7 @@ export default function SettingModal({ open, handleClose }) {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        onClose={() => handleClose("settings")}
+        onClose={() => handleClose("help")}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -39,9 +39,11 @@ export default function SettingModal({ open, handleClose }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2>Generator Settings</h2>
-            <p>Isolation mode</p>
-            <p>Secondary info</p>
+            <h2>Welcome!</h2>
+            <p>This is a personal project for learning</p>
+            <p>
+              <a href="https://coolors.co/">Design credit</a>
+            </p>
           </div>
         </Fade>
       </Modal>
