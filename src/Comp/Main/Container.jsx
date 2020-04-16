@@ -9,7 +9,7 @@ import {
   hsvToRgb,
 } from "../../Helpers/helperFn";
 
-const Container = ({ innerRef }) => {
+const Container = () => {
   const [colours, setColours] = useState([
     {
       ID: 1,

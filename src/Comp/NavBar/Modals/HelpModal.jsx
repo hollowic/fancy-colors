@@ -42,7 +42,13 @@ export default function HelpModal({ open, handleClose }) {
             <h2>Welcome!</h2>
             <p>This is a personal project for learning</p>
             <p>
-              <a href="https://coolors.co/">Design credit</a>
+              <a
+                href="https://coolors.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Design credit
+              </a>
             </p>
           </div>
         </Fade>

@@ -5,9 +5,6 @@ import NavBarComp from "./Comp/NavBar/Header";
 import MainComp from "./Comp/Main/Container";
 import { DndProvider } from "react-dnd";
 import Backend from "react-dnd-html5-backend";
-// import CreatePanelComp from "./Comp/CreatePanel";
-// import ColorPanelComp from "./Comp/ColorPanel";
-// import SideBarComp from "./Comp/SideBar";
 
 const FancyColoursApp = (props) => {
   return (
@@ -20,52 +17,6 @@ const FancyColoursApp = (props) => {
   );
 };
 export default FancyColoursApp;
-
-// const ColorPaletteApp = props => {
-//   //Function to generate random alphanumeric string, length 6
-//   const generateRandomString = () => {
-//     let output = "",
-//       i = 6;
-//     while (i) {
-//       let arr = [
-//         String.fromCharCode(Math.floor(Math.random() * 9 + 48)),
-//         String.fromCharCode(Math.floor(Math.random() * 25 + 97)),
-//         String.fromCharCode(Math.floor(Math.random() * 25 + 65))
-//       ];
-//       output += arr[Math.floor(Math.random() * 3)];
-//       i--;
-//     }
-//     return output;
-//   };
-//   //State of user
-//   const [loggedIn, setLoggedIn] = useState(false);
-
-//   //State of the current panels
-//   const [colorPanelCollection, setColorPanelCollection] = useState([
-//     { ID: generateRandomString() },
-//     { ID: generateRandomString() },
-//     { ID: generateRandomString() },
-//     { ID: generateRandomString() },
-//     { ID: generateRandomString() }
-//   ]);
-
-//   useEffect(() => {
-//     // Update the document title using the browser API
-//     document.title = `${colorPanelCollection.length} panels`;
-//   }, [colorPanelCollection]);
-
-//   const addColorPanelHandler = () => {
-//     setColorPanelCollection([
-//       ...colorPanelCollection,
-//       { ID: generateRandomString() }
-//     ]);
-//   };
-
-//   const removeColorPanelHandler = ID => {
-//     setColorPanelCollection(
-//       colorPanelCollection.filter(itemObj => itemObj.ID !== ID)
-//     );
-//   };
 
 //   return (
 //     <Router>

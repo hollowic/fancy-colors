@@ -41,6 +41,7 @@ export default function UploadModal({ open, handleClose }) {
           <div className={classes.paper}>
             <h2>Pick Colors From an Image</h2>
             <p>Browse or drop image</p>
+            <input type="file"></input>
             <p>Remote image</p>
           </div>
         </Fade>
