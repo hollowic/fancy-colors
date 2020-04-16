@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import TabsHeader from "./TabsHeader";
 import ColorRangeGroup from "./ColorRangeGroup";
 import ColorGradient from "./ColorGradient";
@@ -9,23 +9,17 @@ const ColorPicker = ({
   index,
   visible,
   initialValue,
+  handleAdjustClick,
   handleAdjustmentColourChange,
 }) => {
   const [active, setActive] = useState("hsb");
   const [HSVParams, setHSVParams] = useState([0, 0, 0]);
   const [RGBParams, setRGBParams] = useState([0, 0, 0]);
-  const ref = useRef(null);
 
   useEffect(() => {
     setHSVParams(rgbToHsv(hexToRgb(initialValue)));
     setRGBParams(hexToRgb(initialValue));
   }, [initialValue]);
-
-  useEffect(() => {
-    if (visible) {
-      ref.current.focus();
-    }
-  }, [visible]);
 
   const handleActiveTab = (activateTab) => {
     setActive(activateTab);
@@ -35,7 +29,6 @@ const ColorPicker = ({
     <div
       className={visible ? `adjust-color` : `adjust-color hidden`}
       tabIndex={index}
-      ref={ref}
     >
       <TabsHeader handleActiveTab={handleActiveTab} active={active} />
       <div

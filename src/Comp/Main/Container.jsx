@@ -11,11 +11,41 @@ import {
 
 const Container = ({ innerRef }) => {
   const [colours, setColours] = useState([
-    { ID: 1, colour: generateRandomHexValue(), isLocked: false },
-    { ID: 2, colour: generateRandomHexValue(), isLocked: false },
-    { ID: 3, colour: generateRandomHexValue(), isLocked: false },
-    { ID: 4, colour: generateRandomHexValue(), isLocked: false },
-    { ID: 5, colour: generateRandomHexValue(), isLocked: false },
+    {
+      ID: 1,
+      colour: generateRandomHexValue(),
+      isLocked: false,
+      colorPickerVisible: false,
+      alternateShadeVisible: false,
+    },
+    {
+      ID: 2,
+      colour: generateRandomHexValue(),
+      isLocked: false,
+      colorPickerVisible: false,
+      alternateShadeVisible: false,
+    },
+    {
+      ID: 3,
+      colour: generateRandomHexValue(),
+      isLocked: false,
+      colorPickerVisible: false,
+      alternateShadeVisible: false,
+    },
+    {
+      ID: 4,
+      colour: generateRandomHexValue(),
+      isLocked: false,
+      colorPickerVisible: false,
+      alternateShadeVisible: false,
+    },
+    {
+      ID: 5,
+      colour: generateRandomHexValue(),
+      isLocked: false,
+      colorPickerVisible: false,
+      alternateShadeVisible: false,
+    },
   ]);
 
   const handleSpacebarPress = (e) => {
@@ -55,6 +85,49 @@ const Container = ({ innerRef }) => {
         }
       })
     );
+  };
+
+  const handleAdjustClick = (index) => {
+    setColours(
+      colours.map((el, i) => {
+        if (i === index) {
+          const newDisplayStatus = el.colorPickerVisible ? false : true;
+          return { ...el, colorPickerVisible: newDisplayStatus };
+        } else {
+          return el;
+        }
+      })
+    );
+  };
+
+  const handleAlternateShadeClick = (index, hexValue) => {
+    if (hexValue) {
+      setColours(
+        colours.map((el, i) => {
+          if (i === index) {
+            const newDisplayStatus = el.alternateShadeVisible ? false : true;
+            return {
+              ...el,
+              alternateShadeVisible: newDisplayStatus,
+              colour: hexValue,
+            };
+          } else {
+            return el;
+          }
+        })
+      );
+    } else {
+      setColours(
+        colours.map((el, i) => {
+          if (i === index) {
+            const newDisplayStatus = el.alternateShadeVisible ? false : true;
+            return { ...el, alternateShadeVisible: newDisplayStatus };
+          } else {
+            return el;
+          }
+        })
+      );
+    }
   };
 
   const handleAdjustmentColourChange = (index, label, newValue) => {
@@ -188,7 +261,11 @@ const Container = ({ innerRef }) => {
             ID={String(el.ID)}
             isLocked={el.isLocked}
             backgroundColour={el.colour}
+            colorPickerVisible={el.colorPickerVisible}
+            alternateShadeVisible={el.alternateShadeVisible}
             handleLockClick={handleLockClick}
+            handleAdjustClick={handleAdjustClick}
+            handleAlternateShadeClick={handleAlternateShadeClick}
             handleEditColourChange={handleEditColourChange}
             handleAdjustmentColourChange={handleAdjustmentColourChange}
           />

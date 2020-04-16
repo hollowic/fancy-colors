@@ -26,8 +26,7 @@ export default function AlternateShades({
             className="shades"
             style={{ background: el }}
             onClick={() => {
-              handleEditColourChange(index, el);
-              handleAlternateShadeClick();
+              handleAlternateShadeClick(index, el);
             }}
           >
             <div>{el}</div>

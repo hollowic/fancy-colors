@@ -11,12 +11,14 @@ const Stripe = ({
   isLocked,
   handleLockClick,
   backgroundColour,
+  colorPickerVisible,
+  handleAdjustClick,
+  alternateShadeVisible,
+  handleAlternateShadeClick,
   handleEditColourChange,
   handleAdjustmentColourChange,
 }) => {
   const [colour, setColour] = useState(backgroundColour);
-  const [colorPickerVisible, setColorPickerVisible] = useState(false);
-  const [alternateShadeVisible, setAlternateShadeVisible] = useState(false);
   const textInput = useRef(null);
 
   useEffect(() => {
@@ -70,14 +72,6 @@ const Stripe = ({
     }
   };
 
-  const handleAdjustClick = () => {
-    setColorPickerVisible((prevState) => !prevState);
-  };
-
-  const handleAlternateShadeClick = () => {
-    setAlternateShadeVisible((prevState) => !prevState);
-  };
-
   return (
     <div
       className="single-stripe"
@@ -92,7 +86,10 @@ const Stripe = ({
       />
 
       <Tooltip title="Alternative shades" arrow placement="top">
-        <i className="fas fa-th" onClick={handleAlternateShadeClick} />
+        <i
+          className="fas fa-th"
+          onClick={() => handleAlternateShadeClick(index)}
+        />
       </Tooltip>
 
       <Tooltip title="Drag" arrow placement="top">
@@ -100,15 +97,18 @@ const Stripe = ({
       </Tooltip>
 
       <Tooltip title="Adjust" arrow placement="top">
-        <i className="fas fa-sliders-h" onClick={handleAdjustClick} />
+        <i
+          className="fas fa-sliders-h"
+          onClick={() => handleAdjustClick(index)}
+        />
       </Tooltip>
 
       <ColorPicker
-        initialValue={backgroundColour}
         index={index}
-        handleAdjustmentColourChange={handleAdjustmentColourChange}
         visible={colorPickerVisible}
+        initialValue={backgroundColour}
         handleAdjustClick={handleAdjustClick}
+        handleAdjustmentColourChange={handleAdjustmentColourChange}
       />
 
       {isLocked ? (
