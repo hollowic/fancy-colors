@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import SettingsModal from "./Modals/SettingModal";
 import HelpModal from "./Modals/HelpModal";
+import UploadModal from "./Modals/UploadModal";
+import ExportModal from "./Modals/ExportModal";
 import "./SubHeaderStyles.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
@@ -9,7 +11,6 @@ export default function SubHeader() {
     help: false,
     settings: false,
     camera: false,
-    shades: false,
     export: false,
   });
 
@@ -44,27 +45,38 @@ export default function SubHeader() {
         </li>
         <li>
           <Tooltip title="Pick Colors From Image" arrow placement="top">
-            <i className="fas fa-camera"></i>
+            <i className="fas fa-camera" onClick={() => handleOpen("camera")} />
           </Tooltip>
         </li>
         <li>
           <Tooltip title="Toggle Alternative Shades" arrow placement="top">
-            <i className="fas fa-th" />
+            <i
+              className="fas fa-th"
+              onClick={() => console.log("This will be great!")}
+            />
           </Tooltip>
         </li>
         <li>
           <Tooltip title="Export" arrow placement="top">
-            <i className="fas fa-share-alt"></i>
+            <i
+              className="fas fa-share-alt"
+              onClick={() => handleOpen("export")}
+            />
           </Tooltip>
         </li>
         <li>
           <Tooltip title="Saved Palettes" arrow placement="top">
-            <i className="fas fa-bars"></i>
+            <i
+              className="fas fa-bars"
+              onClick={() => console.log("This will be great!")}
+            />
           </Tooltip>
         </li>
       </ul>
       <HelpModal handleClose={handleClose} open={open.help} />
       <SettingsModal handleClose={handleClose} open={open.settings} />
+      <UploadModal handleClose={handleClose} open={open.camera} />
+      <ExportModal handleClose={handleClose} open={open.export} />
     </div>
   );
 }
