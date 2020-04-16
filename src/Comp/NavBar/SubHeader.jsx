@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import SettingsModal from "./Modals/SettingModal";
 import "./SubHeaderStyles.scss";
 import Tooltip from "@material-ui/core/Tooltip";
 
 export default function SubHeader() {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="sub-header">
       <p>Press the spacebar to generate color schemes!</p>
@@ -14,7 +25,7 @@ export default function SubHeader() {
         </li>
         <li>
           <Tooltip title="Settings" arrow placement="top">
-            <i className="fas fa-cog"></i>
+            <i className="fas fa-cog" onClick={handleOpen} />
           </Tooltip>
         </li>
         <li>
@@ -38,6 +49,7 @@ export default function SubHeader() {
           </Tooltip>
         </li>
       </ul>
+      <SettingsModal handleClose={handleClose} open={open} />
     </div>
   );
 }
