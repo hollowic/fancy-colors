@@ -9,7 +9,6 @@ const ColorPicker = ({
   index,
   visible,
   initialValue,
-  handleAdjustClick,
   handleAdjustmentColourChange,
 }) => {
   const [active, setActive] = useState("hsb");
