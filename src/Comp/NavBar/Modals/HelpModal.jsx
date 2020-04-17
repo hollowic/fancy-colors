@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
     height: "200px",
     boxShadow: "rgba(0, 0, 0, .04) 0 0 0 1px, rgba(0, 0, 0, .1) 0 2px 10px",
   },
+  h2: {
+    fontWeight: "900",
+    fontSize: "26px",
+    textAlign: "center",
+  },
 }));
 
 export default function HelpModal({ open, handleClose }) {
@@ -39,7 +44,7 @@ export default function HelpModal({ open, handleClose }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2>Welcome!</h2>
+            <h2 className={classes.h2}>Welcome!</h2>
             <p>This is a personal project for learning</p>
             <p>
               <a
