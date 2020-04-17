@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SettingsModal from "./Modals/SettingModal";
 import HelpModal from "./Modals/HelpModal";
 import UploadModal from "./Modals/UploadModal";
@@ -24,6 +24,12 @@ export default function SubHeader() {
     setOpen((prevState) => {
       return { ...prevState, [item]: false };
     });
+  };
+
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => {
+    setActive((prevState) => !prevState);
   };
 
   return (
@@ -60,8 +66,8 @@ export default function SubHeader() {
         <li>
           <Tooltip title="Toggle Alternative Shades" arrow placement="top">
             <i
-              className="fas fa-th"
-              onClick={() => console.log("This will be great!")}
+              className={active ? "fas fa-th active" : "fas fa-th"}
+              onClick={toggleActive}
             />
           </Tooltip>
         </li>

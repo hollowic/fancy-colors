@@ -39,6 +39,19 @@
             .fas {
                 cursor: pointer;
             }
+
+            .fa-th {
+                transition: transform .5s ease-in-out;
+
+                &.active {
+                    transform: rotate(90deg);
+                    color: #10a5e8;
+                }
+
+                &:hover {
+                    color: #10a5e8;
+                }
+            }
         }
     }
 }
