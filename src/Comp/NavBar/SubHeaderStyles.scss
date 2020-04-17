@@ -31,6 +31,11 @@
             line-height: 2rem;
             color: #3c4859;
 
+            .divider {
+                border-right: 1px solid #e8edf2;
+                height: 100%;
+            }
+
             .fas {
                 cursor: pointer;
             }

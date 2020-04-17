@@ -122,8 +122,11 @@ export default function UploadModal({ open, handleClose }) {
         e.target.files[0].type === "image/jpeg" ||
         e.target.files[0].type === "image/png"
       ) {
-        console.log(e.target.files[0].size / 1024 + "KB");
-        console.log(e.target.files[0].type);
+        if (e.target.files[0].size / 1048576 < 5) {
+          //do someshit
+        }
+      } else {
+        console.log("uh oh something went wrong");
       }
     }
   };

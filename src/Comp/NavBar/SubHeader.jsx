@@ -39,14 +39,23 @@ export default function SubHeader() {
           </Tooltip>
         </li>
         <li>
+          <span className="divider"></span>
+        </li>
+        <li>
           <Tooltip title="Settings" arrow placement="top">
             <i className="fas fa-cog" onClick={() => handleOpen("settings")} />
           </Tooltip>
         </li>
         <li>
+          <span className="divider"></span>
+        </li>
+        <li>
           <Tooltip title="Pick Colors From Image" arrow placement="top">
             <i className="fas fa-camera" onClick={() => handleOpen("camera")} />
           </Tooltip>
+        </li>
+        <li>
+          <span className="divider"></span>
         </li>
         <li>
           <Tooltip title="Toggle Alternative Shades" arrow placement="top">
@@ -57,12 +66,18 @@ export default function SubHeader() {
           </Tooltip>
         </li>
         <li>
+          <span className="divider"></span>
+        </li>
+        <li>
           <Tooltip title="Export" arrow placement="top">
             <i
               className="fas fa-share-alt"
               onClick={() => handleOpen("export")}
             />
           </Tooltip>
+        </li>
+        <li>
+          <span className="divider"></span>
         </li>
         <li>
           <Tooltip title="Saved Palettes" arrow placement="top">
