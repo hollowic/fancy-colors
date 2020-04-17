@@ -1,10 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import SettingsModal from "./Modals/SettingModal";
 import HelpModal from "./Modals/HelpModal";
 import UploadModal from "./Modals/UploadModal";
 import ExportModal from "./Modals/ExportModal";
 import Tooltip from "@material-ui/core/Tooltip";
-import AppsIcon from "@material-ui/icons/Apps";
 import "./SubHeaderStyles.scss";
 
 export default function SubHeader({ toggleShades }) {
