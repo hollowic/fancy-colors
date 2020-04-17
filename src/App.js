@@ -272,35 +272,3 @@ const FancyColoursApp = () => {
   );
 };
 export default FancyColoursApp;
-
-//   return (
-//     <Router>
-//       <div className="App">
-//         <NavBarComp loggedIn={loggedIn} />
-//         <div className="container">
-//           <div id="feed">
-//             <Route path="/new" component={CreatePanelComp} />
-//             <Route path="/palettes">
-//               {colorPanelCollection.map((panel, index) => {
-//                 return (
-//                   <ColorPanelComp
-//                     key={panel.ID}
-//                     uniqueID={panel.ID}
-//                     scheme={panel}
-//                     remove={removeColorPanelHandler}
-//                   />
-//                 );
-//               })}
-//             </Route>
-//           </div>
-//           <SideBarComp />
-//         </div>
-//         {/* <button className="feeling-lucky" onClick={addColorPanelHandler}>
-//         Feeling Lucky
-//       </button> */}
-//       </div>
-//     </Router>
-//   );
-// };
-
-// export default ColorPaletteApp;
