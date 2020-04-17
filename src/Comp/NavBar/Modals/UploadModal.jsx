@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(30, 45, 90, 0.74)",
+    backgroundColor: "rgba(30, 45, 90, 0.64)",
   },
   paper: {
     backgroundColor: "#ffffff",

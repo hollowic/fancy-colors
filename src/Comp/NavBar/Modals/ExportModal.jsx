@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "rgba(30, 45, 90, 0.64)",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -18,6 +19,38 @@ const useStyles = makeStyles((theme) => ({
     width: "350px",
     height: "200px",
     boxShadow: "rgba(0, 0, 0, .04) 0 0 0 1px, rgba(0, 0, 0, .1) 0 2px 10px",
+    position: "relative",
+  },
+  header: {
+    position: "absolute",
+    display: "flex",
+    height: "55px",
+    width: "100%",
+    top: 0,
+    left: 0,
+    borderBottom: "1px solid #e8edf2",
+    alignItems: "center",
+  },
+  headerTitle: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#9facbd",
+  },
+  close: {
+    color: "#d3dce6",
+    width: "55px",
+    height: "55px",
+    position: "absolute",
+    right: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#9facbd",
+    },
   },
   body: {
     display: "flex",
@@ -42,7 +75,15 @@ export default function UploadModal({ open, handleClose }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2>Export Palette</h2>
+            <div className={classes.header}>
+              <div className={classes.headerTitle}>Export Palette</div>
+              <div className={classes.close}>
+                <i
+                  className="fas fa-times modal-close"
+                  onClick={() => handleClose("export")}
+                />
+              </div>
+            </div>
             <div className={classes.body}>
               <p>URL</p>
               <p>PDF</p>
