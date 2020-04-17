@@ -104,12 +104,30 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "13px",
   },
   linkInput: {
-    width: "100%", marginBottom: "15px", padding: "16px 18px", borderRadius: "7px", border: "1px solid #d3dce6", outline: "none"
-  }
+    width: "100%",
+    marginBottom: "15px",
+    padding: "16px 18px",
+    borderRadius: "7px",
+    border: "1px solid #d3dce6",
+    outline: "none",
+  },
 }));
 
 export default function UploadModal({ open, handleClose }) {
   const classes = useStyles();
+
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      if (
+        e.target.files[0].type === "image/jpeg" ||
+        e.target.files[0].type === "image/png"
+      ) {
+        console.log(e.target.files[0].size / 1024 + "KB");
+        console.log(e.target.files[0].type);
+      }
+    }
+  };
+
   return (
     <>
       <Modal
@@ -150,12 +168,20 @@ export default function UploadModal({ open, handleClose }) {
               />
               <div className={classes.imageAreaText}>Browse or drop image</div>
               {/* <div className={classes.imageAreaText}>Drop image</div> */}
-              <input type="file" className={classes.imageInput} />
+              <input
+                type="file"
+                className={classes.imageInput}
+                onChange={handleFileChange}
+              />
             </div>
             <hr className={classes.hr}></hr>
-            <div classname="link-input-group" style={{ height: "145px" }}>
+            <div className="link-input-group" style={{ height: "145px" }}>
               <label className={classes.label}>Remote image</label>
-              <input type="text" placeholder="http://" className={classes.linkInput}/>
+              <input
+                type="text"
+                placeholder="http://"
+                className={classes.linkInput}
+              />
               <Button className={classes.root}>OK</Button>
             </div>
           </div>
