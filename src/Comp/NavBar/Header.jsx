@@ -2,7 +2,7 @@ import React from "react";
 import "./HeaderStyles.scss";
 import SubHeader from "./SubHeader";
 
-const Header = (props) => {
+const Header = ({ toggleShades, isLoggedIn }) => {
   return (
     <>
       <div id="header">
@@ -30,7 +30,7 @@ const Header = (props) => {
               <li>
                 <span className="divider"></span>
               </li>
-              {props.loggedIn ? (
+              {isLoggedIn ? (
                 <li>
                   <a href="/logout">Logout</a>
                 </li>
@@ -43,7 +43,7 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-      <SubHeader />
+      <SubHeader toggleShades={toggleShades} />
     </>
   );
 };

@@ -134,6 +134,15 @@ const FancyColoursApp = () => {
     }
   };
 
+  const toggleShades = () => {
+    setColours(
+      colours.map((el) => {
+        const newDisplayStatus = el.alternateShadeVisible ? false : true;
+        return { ...el, alternateShadeVisible: newDisplayStatus };
+      })
+    );
+  };
+
   const handleAdjustmentColourChange = (index, label, newValue) => {
     if (label === "Hue") {
       setColours((prevState) =>
@@ -257,7 +266,7 @@ const FancyColoursApp = () => {
 
   return (
     <>
-      <NavBarComp />
+      <NavBarComp toggleShades={toggleShades} />
       {/* <DndProvider backend={Backend}> */}
       <MainComp
         colours={colours}

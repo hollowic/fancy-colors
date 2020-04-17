@@ -40,8 +40,8 @@
                 cursor: pointer;
             }
 
-            .fa-th {
-                transition: transform .5s ease-in-out;
+            .fa-square {
+                transition: transform .25s ease-in-out;
 
                 &.active {
                     transform: rotate(90deg);

@@ -3,10 +3,11 @@ import SettingsModal from "./Modals/SettingModal";
 import HelpModal from "./Modals/HelpModal";
 import UploadModal from "./Modals/UploadModal";
 import ExportModal from "./Modals/ExportModal";
-import "./SubHeaderStyles.scss";
 import Tooltip from "@material-ui/core/Tooltip";
+import AppsIcon from "@material-ui/icons/Apps";
+import "./SubHeaderStyles.scss";
 
-export default function SubHeader() {
+export default function SubHeader({ toggleShades }) {
   const [open, setOpen] = useState({
     help: false,
     settings: false,
@@ -29,6 +30,7 @@ export default function SubHeader() {
   const [active, setActive] = useState(false);
 
   const toggleActive = () => {
+    toggleShades();
     setActive((prevState) => !prevState);
   };
 
@@ -66,7 +68,7 @@ export default function SubHeader() {
         <li>
           <Tooltip title="Toggle Alternative Shades" arrow placement="top">
             <i
-              className={active ? "fas fa-th active" : "fas fa-th"}
+              className={active ? "fas fa-square active" : "fas fa-square"}
               onClick={toggleActive}
             />
           </Tooltip>
