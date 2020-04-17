@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import AlternateShades from "./AlternateShades/AlternateShades";
 import Tooltip from "@material-ui/core/Tooltip";
-import AppsIcon from "@material-ui/icons/Apps";
 import "./StripeStyles.scss";
 import { validateHexValue, hexToRgb } from "../../Helpers/helperFn";
 
