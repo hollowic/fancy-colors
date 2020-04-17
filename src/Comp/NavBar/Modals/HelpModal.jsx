@@ -45,14 +45,16 @@ export default function HelpModal({ open, handleClose }) {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 className={classes.h2}>Welcome!</h2>
-            <p>This is a personal project for learning</p>
+            <span role="img" aria-label="book emoji">
+              📖 personal project for learning 📖
+            </span>
             <p>
               <a
                 href="https://coolors.co/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Design credit
+                Clone of Coolor
               </a>
             </p>
           </div>
