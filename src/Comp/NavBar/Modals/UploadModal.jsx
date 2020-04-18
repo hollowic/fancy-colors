@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     height: "420px",
     boxShadow: "rgba(0, 0, 0, .04) 0 0 0 1px, rgba(0, 0, 0, .1) 0 2px 10px",
     position: "relative",
+    "&.error": {
+      animation: "$shake 0.82s cubic-bezier(.36,.07,.19,.97) both",
+    },
   },
   root: {
     background: "linear-gradient(45deg, #23ADF0 30%, #04C8F4 90%)",
@@ -112,11 +115,29 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #d3dce6",
     outline: "none",
   },
+  "@keyframes shake": {
+    "10%, 90%": {
+      transform: "translate3d(-1px, 0, 0)",
+    },
+
+    "20%, 80%": {
+      transform: "translate3d(2px, 0, 0)",
+    },
+
+    "30%, 50%, 70%": {
+      transform: "translate3d(-4px, 0, 0)",
+    },
+
+    "40%, 60%": {
+      transform: "translate3d(4px, 0, 0)",
+    },
+  },
 }));
 
 export default function UploadModal({ open, handleClose }) {
   const classes = useStyles();
   const [error, setError] = useState(null);
+  const ref = useRef(null);
 
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
@@ -126,9 +147,12 @@ export default function UploadModal({ open, handleClose }) {
       ) {
         if (e.target.files[0].size / 1048576 < 5) {
           //do someshit
+          console.log("i got the image file");
         }
       } else {
         setError(true);
+        ref.current.classList.add("error");
+
         console.log("uh oh something went wrong");
       }
     }
@@ -149,7 +173,7 @@ export default function UploadModal({ open, handleClose }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
+          <div className={classes.paper} ref={ref}>
             <div className={classes.header}>
               <div className={classes.headerTitle}>
                 Pick Colors From an Image
