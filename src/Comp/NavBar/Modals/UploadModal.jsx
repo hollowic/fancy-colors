@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Button from "@material-ui/core/Button";
 import { Tooltip } from "@material-ui/core";
+import Modal from "@material-ui/core/Modal";
+import Fade from "@material-ui/core/Fade";
+import Backdrop from "@material-ui/core/Backdrop";
+import Button from "@material-ui/core/Button";
+import Spinner from "./Spinner";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -250,6 +251,7 @@ export default function UploadModal({ open, handleClose }) {
               />
               <Button className={classes.root} onClick={handleOkSubmit}>
                 OK
+                <Spinner />
               </Button>
             </div>
           </div>
