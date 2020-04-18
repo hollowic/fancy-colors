@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -136,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UploadModal({ open, handleClose }) {
   const classes = useStyles();
+  const [query, setQuery] = useState("");
   const [error, setError] = useState(null);
   const ref = useRef(null);
 
@@ -156,6 +158,20 @@ export default function UploadModal({ open, handleClose }) {
         console.log("uh oh something went wrong");
       }
     }
+  };
+
+  const handleOnChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleOkSubmit = async (e) => {
+    console.log("i am looking for your query");
+    // try {
+    //   const res = await axios.get(query);
+    //   console.log(res);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -227,10 +243,14 @@ export default function UploadModal({ open, handleClose }) {
               <label className={classes.label}>Remote image</label>
               <input
                 type="text"
+                value={query}
+                onChange={handleOnChange}
                 placeholder="http://"
                 className={classes.linkInput}
               />
-              <Button className={classes.root}>OK</Button>
+              <Button className={classes.root} onClick={handleOkSubmit}>
+                OK
+              </Button>
             </div>
           </div>
         </Fade>
