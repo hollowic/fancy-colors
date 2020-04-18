@@ -152,7 +152,7 @@ export default function UploadModal({ open, handleClose }) {
       } else {
         setError(true);
         ref.current.classList.add("error");
-
+        setTimeout(() => ref.current.classList.remove("error"), 500);
         console.log("uh oh something went wrong");
       }
     }
