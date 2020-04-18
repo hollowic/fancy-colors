@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   spinner: {
-    display: "inline-block",
     width: "20px",
     height: "20px",
     borderWidth: "2px",

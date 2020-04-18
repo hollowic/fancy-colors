@@ -140,6 +140,7 @@ export default function UploadModal({ open, handleClose }) {
   const classes = useStyles();
   const [query, setQuery] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
   const ref = useRef(null);
 
   const handleFileChange = (e) => {
@@ -250,8 +251,7 @@ export default function UploadModal({ open, handleClose }) {
                 className={classes.linkInput}
               />
               <Button className={classes.root} onClick={handleOkSubmit}>
-                OK
-                <Spinner />
+                {isLoading ? <Spinner /> : "OK"}
               </Button>
             </div>
           </div>
