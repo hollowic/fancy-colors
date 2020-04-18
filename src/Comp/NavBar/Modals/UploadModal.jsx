@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -116,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UploadModal({ open, handleClose }) {
   const classes = useStyles();
+  const [error, setError] = useState(null);
 
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
@@ -127,6 +128,7 @@ export default function UploadModal({ open, handleClose }) {
           //do someshit
         }
       } else {
+        setError(true);
         console.log("uh oh something went wrong");
       }
     }
@@ -160,18 +162,24 @@ export default function UploadModal({ open, handleClose }) {
               </div>
             </div>
             <div className={classes.imagePickerArea}>
-              <Tooltip title="This is not a valid image" arrow placement="top">
-                <i
-                  className="fas fa-exclamation-circle"
-                  style={{
-                    position: "absolute",
-                    color: "#e0356c",
-                    top: 15,
-                    right: 15,
-                    zIndex: 90,
-                  }}
-                />
-              </Tooltip>
+              {error && (
+                <Tooltip
+                  title="This is not a valid image"
+                  arrow
+                  placement="top"
+                >
+                  <i
+                    className="fas fa-exclamation-circle"
+                    style={{
+                      position: "absolute",
+                      color: "#e0356c",
+                      top: 15,
+                      right: 15,
+                      zIndex: 90,
+                    }}
+                  />
+                </Tooltip>
+              )}
               <i
                 className="far fa-images"
                 style={{
