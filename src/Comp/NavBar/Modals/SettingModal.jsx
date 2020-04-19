@@ -1,4 +1,6 @@
 import React from "react";
+import Switch from "./Switch";
+import Dropdown from "./Dropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -82,8 +84,18 @@ export default function SettingModal({ open, handleClose }) {
               </div>
             </div>
 
-            <p>Isolation mode</p>
-            <p>Secondary info</p>
+            <div>
+              <label>Isolation mode</label>
+              <Switch />
+            </div>
+            <div>
+              <label>Monochromatic mode</label>
+              <Switch />
+            </div>
+            <div>
+              <label>Secondary info</label>
+              <Dropdown />
+            </div>
           </div>
         </Fade>
       </Modal>
