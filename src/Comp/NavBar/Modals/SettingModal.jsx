@@ -54,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
       color: "#9facbd",
     },
   },
+  settingInput: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }));
 
 export default function SettingModal({ open, handleClose }) {
@@ -84,15 +89,15 @@ export default function SettingModal({ open, handleClose }) {
               </div>
             </div>
 
-            <div>
+            <div className={classes.settingInput}>
               <label>Isolation mode</label>
               <Switch />
             </div>
-            <div>
+            <div className={classes.settingInput}>
               <label>Monochromatic mode</label>
               <Switch />
             </div>
-            <div>
+            <div className={classes.settingInput}>
               <label>Secondary info</label>
               <Dropdown />
             </div>
