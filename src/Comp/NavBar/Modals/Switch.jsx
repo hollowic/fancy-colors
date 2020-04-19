@@ -11,12 +11,17 @@ const useStyles = makeStyles((theme) => ({
     outline: "none",
     position: "relative",
     cursor: "pointer",
+    transition: "all .2s ease-in-out",
     "&:checked": {
       borderColor: "#0facf3",
+      "&::after": {
+        transform: "translate3d(18px,0,0)",
+        background: "#0facf3",
+      },
     },
-    "&:hover": {
-      borderColor: "#b2c2d4",
-    },
+    // "&:hover": {
+    //   borderColor: "#b2c2d4",
+    // },
     "&::after": {
       background: "#d3dce6",
       content: '""',
@@ -26,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "50%",
       top: "2px",
       left: "2px",
+      transition: "all .2s ease-in-out",
     },
   },
 }));
