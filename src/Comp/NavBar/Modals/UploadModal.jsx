@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
     height: "15px",
     lineHeight: "14px",
-    fontSize: "13px",
+    fontSize: "14px",
   },
   linkInput: {
     width: "100%",

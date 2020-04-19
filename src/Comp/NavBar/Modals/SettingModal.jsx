@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     borderRadius: "10px",
-    padding: theme.spacing(2, 4, 3),
+    padding: "75px 20px 20px",
     outline: 0,
     width: "350px",
     height: "200px",
@@ -56,8 +56,11 @@ const useStyles = makeStyles((theme) => ({
   },
   settingInput: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
+  },
+  label: {
+    fontSize: "14px",
   },
 }));
 
@@ -90,15 +93,15 @@ export default function SettingModal({ open, handleClose }) {
             </div>
 
             <div className={classes.settingInput}>
-              <label>Isolation mode</label>
+              <label className={classes.label}>Isolation mode</label>
               <Switch />
             </div>
             <div className={classes.settingInput}>
-              <label>Monochromatic mode</label>
+              <label className={classes.label}>Monochromatic mode</label>
               <Switch />
             </div>
             <div className={classes.settingInput}>
-              <label>Secondary info</label>
+              <label className={classes.label}>Secondary info</label>
               <Dropdown />
             </div>
           </div>
