@@ -58,9 +58,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    height: "27px",
+    marginBottom: "9px",
   },
   label: {
     fontSize: "14px",
+    padding: "10px 0",
+    marginBottom: "5px",
   },
 }));
 
