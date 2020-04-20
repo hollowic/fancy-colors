@@ -2,7 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  dropDown: {},
+  dropDown: {
+    width: "140px",
+    height: "32px",
+    borderRadius: "7px",
+  },
   scroller: {},
   arrow: {},
   list: {},
@@ -12,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dropdown() {
   const classes = useStyles();
   return (
-    <div className={classes.dropdown}>
+    <div className={classes.dropDown}>
       <input type="hidden" value="Off" />
       <div className={classes.scroller}>
         <input type="text" />
