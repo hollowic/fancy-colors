@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import "./ColorRangeGroupStyles.scss";
+import PropTypes from "prop-types";
 
 const initWait = 0.5;
 const changeRate = 20;
@@ -144,6 +145,7 @@ export default function ColorRangeGroup({
             max={limit}
             maxLength={3}
             onChange={handleOnChange}
+            data-testid="input-text"
           />
           <RemoveIcon
             className="minus"
@@ -179,3 +181,8 @@ export default function ColorRangeGroup({
     </div>
   );
 }
+
+ColorRangeGroup.propTypes = {
+  initialParam: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+};

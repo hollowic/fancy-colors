@@ -4,6 +4,7 @@ import ColorRangeGroup from "./ColorRangeGroup";
 import ColorGradient from "./ColorGradient";
 import "./ColorPickerStyles.scss";
 import { hexToRgb, rgbToHsv } from "../../Helpers/helperFn";
+import PropTypes from "prop-types";
 
 const ColorPicker = ({
   index,
@@ -107,3 +108,7 @@ const ColorPicker = ({
   );
 };
 export default ColorPicker;
+
+ColorPicker.propTypes = {
+  initialValue: PropTypes.string.isRequired,
+};
