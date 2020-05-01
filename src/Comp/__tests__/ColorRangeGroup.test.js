@@ -33,45 +33,28 @@ it("given the initial param and label, renders the correct initial value", () =>
   expect(textInput).toHaveValue("60");
 });
 
-// it("renders a default button style", () => {
-//   const { getByText } = render(<Button>Default</Button>);
-//   expect(getByText("Default")).toHaveClass("button");
-// });
+it("given the initial param and label, renders the remove icon and add icon", () => {
+  const { getByTestId } = render(
+    <ColorRangeGroup initialParam={60} label={"Hue"} />
+  );
 
-// it("renders a confirm button", () => {
-//   const { getByText } = render(<Button confirm>Confirm</Button>);
-//   expect(getByText("Confirm")).toHaveClass("button--confirm");
-// });
+  expect(getByTestId("minusButton")).toHaveClass("minus");
+  expect(getByTestId("plusButton")).toHaveClass("plus");
+});
 
-// it("renders a danger button", () => {
-//   const { getByText } = render(<Button danger>Danger</Button>);
-//   expect(getByText("Danger")).toHaveClass("button--danger");
-// });
-
-// it("renders a clickable button", () => {
+// it("given the initial param and label, renders the remove icon and add icon as clickable buttons", () => {
 //   const handleClick = jest.fn();
-//   const { getByText } = render(
-//     <Button onClick={handleClick}>Clickable</Button>
+//   const { getByTestId } = render(
+//     <ColorRangeGroup
+//       initialParam={60}
+//       label={"Hue"}
+//       handleAdjustmentColourChange={handleClick}
+//     />
 //   );
 
-//   const button = getByText("Clickable");
+//   const minusButton = getByTestId("minusButton");
 
-//   fireEvent.click(button);
+//   fireEvent.click(minusButton);
 
 //   expect(handleClick).toHaveBeenCalledTimes(1);
-// });
-
-// it("renders a disabled button", () => {
-//   const handleClick = jest.fn();
-//   const { getByText } = render(
-//     <Button disabled onClick={handleClick}>
-//       Disabled
-//     </Button>
-//   );
-
-//   const button = getByText("Disabled");
-
-//   fireEvent.click(button);
-
-//   expect(handleClick).toHaveBeenCalledTimes(0);
 // });

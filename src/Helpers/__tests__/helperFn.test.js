@@ -1,12 +1,14 @@
 import {
   generateRandomHexValue,
   validateHexValue,
-  HexToHSL,
-  HexToRGB,
-  RGBToHSL,
-  RGBToHex,
-  HSLToRGB,
-  HSLToHex,
+  hexToHsl,
+  hexToRgb,
+  rgbToHsl,
+  rgbToHex,
+  hslToRgb,
+  hslToHex,
+  rgbToHsv,
+  hsvToRgb,
 } from "../helperFn";
 
 test("validateHexValue returns a false given String(zzz)", () => {
@@ -34,74 +36,75 @@ test("generateRandomHexValue returns a valid hex value", () => {
   expect(validateHexValue(result)).toBe(true);
 });
 
-test("HexToHSL returns a valid HSL value, given a valid Hex value", () => {
+test("hexToHsl returns a valid HSL value, given a valid Hex value", () => {
   const HEX = "#A1D98C";
-  const HSL = "hsl(104,50%,70%)";
-  expect(HexToHSL(HEX)).toBe(HSL);
+  const HSL = [104, 50, 70];
+  console.log(hexToHsl(HEX));
+  expect(hexToHsl(HEX)).toEqual(HSL);
 });
 
-test("HexToHSL returns a valid HSL value, given a valid Hex value", () => {
+test("hexToHsl returns a valid HSL value, given a valid Hex value", () => {
   const HEX = "#FA6E5C";
-  const HSL = "hsl(7,94%,67%)";
-  expect(HexToHSL(HEX)).toBe(HSL);
+  const HSL = [7, 94, 67];
+  expect(hexToHsl(HEX)).toEqual(HSL);
 });
 
-test("HexToRGB returns a valid RGB value, given a valid Hex value", () => {
+test("hexToRgb returns a valid RGB value, given a valid Hex value", () => {
   const HEX = "#A1D98C";
-  const RGB = "rgb(161,217,140)";
-  expect(HexToRGB(HEX)).toBe(RGB);
+  const RGB = [161, 217, 140];
+  expect(hexToRgb(HEX)).toEqual(RGB);
 });
 
-test("HexToRGB returns a valid RGB value, given a valid Hex value", () => {
+test("hexToRgb returns a valid RGB value, given a valid Hex value", () => {
   const HEX = "#FA6E5C";
-  const RGB = "rgb(250,110,92)";
-  expect(HexToRGB(HEX)).toBe(RGB);
+  const RGB = [250, 110, 92];
+  expect(hexToRgb(HEX)).toEqual(RGB);
 });
 
-test("RGBToHSL returns a valid HSL value, given a valid RGB value", () => {
+test("rgbToHsl returns a valid HSL value, given a valid RGB value", () => {
   const RGB = "rgb(250,110,92)";
   const HSL = "hsl(7,94%,67%)";
-  expect(RGBToHSL(RGB)).toBe(HSL);
+  expect(rgbToHsl(RGB)).toBe(HSL);
 });
 
-test("RGBToHSL returns a valid HSL value, given a valid RGB value", () => {
+test("rgbToHsl returns a valid HSL value, given a valid RGB value", () => {
   const RGB = "rgb(161,217,140)";
   const HSL = "hsl(104,50%,70%)";
-  expect(RGBToHSL(RGB)).toBe(HSL);
+  expect(rgbToHsl(RGB)).toBe(HSL);
 });
 
-test("RGBToHEX returns a valid HEX value, given a valid RGB value", () => {
-  const RGB = "rgb(161,217,140)";
+test("rgbToHex returns a valid HEX value, given a valid RGB value", () => {
+  const RGB = [161, 217, 140];
   const HEX = "#A1D98C";
-  expect(RGBToHex(RGB)).toBe(HEX);
+  expect(rgbToHex(RGB).toUpperCase()).toBe(HEX);
 });
 
-test("RGBToHEX returns a valid HEX value, given a valid RGB value", () => {
-  const RGB = "rgb(250,110,92)";
+test("rgbToHex returns a valid HEX value, given a valid RGB value", () => {
+  const RGB = [250, 110, 92];
   const HEX = "#FA6E5C";
-  expect(RGBToHex(RGB)).toBe(HEX);
+  expect(rgbToHex(RGB).toUpperCase()).toBe(HEX);
 });
 
-test("HSLToRGB returns a valid RGB value, given a valid HSL value", () => {
+test("hslToRgb returns a valid RGB value, given a valid HSL value", () => {
   const HSL = "hsl(7,94%,67%)";
   const RGB = "rgb(250,110,92)";
-  expect(HSLToRGB(HSL)).toBe(RGB);
+  expect(hslToRgb(HSL)).toBe(RGB);
 });
 
-test("HSLToRGB returns a valid RGB value, given a valid HSL value", () => {
+test("hslToRgb returns a valid RGB value, given a valid HSL value", () => {
   const HSL = "hsl(104,50%,70%)";
   const RGB = "rgb(161,217,140)";
-  expect(HSLToRGB(HSL)).toBe(RGB);
+  expect(hslToRgb(HSL)).toBe(RGB);
 });
 
-test("HSLToRGB returns a valid RGB value, given a valid HSL value", () => {
+test("hslToRgb returns a valid RGB value, given a valid HSL value", () => {
   const HSL = "hsl(7,4%,7%)";
   const RGB = "rgb(19,17,17)";
-  expect(HSLToRGB(HSL)).toBe(RGB);
+  expect(hslToRgb(HSL)).toBe(RGB);
 });
 
-test("HSLToHex returns a valid Hex value, given a valid HSL value", () => {
+test("hslToHex returns a valid Hex value, given a valid HSL value", () => {
   const HSL = [255, 74, 77];
   const HEX = "#AF99F0";
-  expect(HSLToHex(HSL)).toBe(HEX);
+  expect(hslToHex(HSL).toUpperCase()).toBe(HEX);
 });

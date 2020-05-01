@@ -149,6 +149,7 @@ export default function ColorRangeGroup({
           />
           <RemoveIcon
             className="minus"
+            data-testid="minusButton"
             onTouchStart={() => callBackOnceAndWait(false)}
             onTouchEnd={stopTimers}
             onTouchMove={stopTimers}
@@ -159,6 +160,7 @@ export default function ColorRangeGroup({
           />
           <AddIcon
             className="plus"
+            data-testid="plusButton"
             onTouchStart={() => callBackOnceAndWait(true)}
             onTouchEnd={stopTimers}
             onTouchMove={stopTimers}
