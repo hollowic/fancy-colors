@@ -86,11 +86,16 @@ export default function UploadModal({ open, handleClose }) {
             </div>
             <div className={classes.body}>
               <p>URL</p>
+              <br />
               <p>PDF</p>
+              <br />
               <p>PNG</p>
+              <br />
 
               <p>SCSS</p>
+              <br />
               <p>SVG</p>
+              <br />
               <p>JPEG</p>
             </div>
           </div>
