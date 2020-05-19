@@ -30,14 +30,26 @@ const Header = ({ toggleShades, isLoggedIn }) => {
               <li>
                 <span className="divider"></span>
               </li>
+
               {isLoggedIn ? (
                 <li>
-                  <a href="/logout">Logout</a>
+                  <a href="/logout">Sign Out</a>
                 </li>
               ) : (
                 <li>
-                  <a href="/login">Login</a>
+                  <button>Sign In</button>
                 </li>
+              )}
+
+              {!isLoggedIn && (
+                <>
+                  <li>
+                    <span className="divider"></span>
+                  </li>
+                  <li>
+                    <button>Sign Up</button>
+                  </li>
+                </>
               )}
             </ul>
           </div>

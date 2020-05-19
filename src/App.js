@@ -14,6 +14,7 @@ import {
 } from "./Helpers/helperFn";
 
 const FancyColoursApp = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [colours, setColours] = useState([
     {
       ID: 1,
@@ -266,7 +267,7 @@ const FancyColoursApp = () => {
 
   return (
     <>
-      <NavBarComp toggleShades={toggleShades} />
+      <NavBarComp toggleShades={toggleShades} isLoggedIn={isLoggedIn} />
       {/* <DndProvider backend={Backend}> */}
       <MainComp
         colours={colours}
